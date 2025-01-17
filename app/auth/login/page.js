@@ -75,7 +75,7 @@ export default function LoginPage() {
 
         <div className='text-center mt-4'>
           <Link href='/auth/signup' className='text-[#1B3C6E] hover:underline'>
-            Don&apos;t have an account? Sign up
+            Don&apos;t have an account? Sign up here
           </Link>
         </div>
       </form>
