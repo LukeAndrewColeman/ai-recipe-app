@@ -99,7 +99,7 @@ export async function generateRecipeIdeas(cuisine) {
     } catch (parseError) {
       console.error('Parse error:', parseError);
       console.error('Cleaned text:', cleanedText);
-      throw new Error(`Failed to parse recipe data: ${parseError.message}`);
+      throw new Error(`Error generating recipe ideas. Please try again.`);
     }
   } catch (error) {
     console.error('Generation error:', error);

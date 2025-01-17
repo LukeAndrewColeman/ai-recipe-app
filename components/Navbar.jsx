@@ -3,18 +3,29 @@
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { logout } from '@/app/actions/logout';
+import { useAuth } from '@/hooks/useAuth';
+import { useEffect } from 'react';
 
-export default function Navbar({ session }) {
+export default function Navbar() {
   const router = useRouter();
+  const { session, loading, refreshSession } = useAuth();
 
   const handleLogout = async () => {
     try {
       await logout();
+      await refreshSession();
+      router.push('/auth/login');
       router.refresh();
     } catch (error) {
       console.error('Logout failed:', error);
     }
   };
+
+  useEffect(() => {
+    if (session) {
+      router.refresh();
+    }
+  }, [session]);
 
   console.log(session);
 
@@ -72,7 +83,9 @@ export default function Navbar({ session }) {
           </ul>
         </div>
         <div className='navbar-end flex'>
-          {session === null ? (
+          {loading ? (
+            <span className='loading loading-spinner loading-md'></span>
+          ) : session ? (
             <button
               onClick={handleLogout}
               className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-start gap-2 px-8 transition-all text-center'

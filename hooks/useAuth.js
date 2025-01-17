@@ -1,28 +1,36 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { auth } from '@/app/auth';
+import { useState, useEffect, useCallback } from 'react';
+import { getSession } from '@/app/actions/getSession';
+import { useAuthContext } from '@/app/providers/AuthProvider';
 
-// Custom hook to handle authentication state
 export function useAuth() {
-  const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { sessionState, updateSession } = useAuthContext();
+
+  const refreshSession = useCallback(async () => {
+    try {
+      setLoading(true);
+      const sessionData = await getSession();
+      updateSession(sessionData);
+      return sessionData;
+    } catch (err) {
+      setError(err);
+      return null;
+    } finally {
+      setLoading(false);
+    }
+  }, [updateSession]);
 
   useEffect(() => {
-    const fetchSession = async () => {
-      try {
-        const session = await auth();
-        setSession(session);
-      } catch (err) {
-        setError(err);
-      } finally {
-        setLoading(false);
-      }
-    };
+    refreshSession();
+  }, [refreshSession]);
 
-    fetchSession();
-  }, []);
-
-  return { session, loading, error };
+  return {
+    session: sessionState,
+    loading,
+    error,
+    refreshSession,
+  };
 }

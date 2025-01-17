@@ -4,15 +4,23 @@ import { useEffect, useState } from 'react';
 import AIRecipeCard from '@/components/AIRecipeCard';
 import LoadingRecipeCard from '@/components/LoadingRecipeCard';
 import { getSavedRecipes } from '@/app/actions/getSavedRecipes';
+import { useSession } from 'next-auth/react';
 
 const RecipeBook = () => {
   const [savedRecipes, setSavedRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { data: session } = useSession();
 
   useEffect(() => {
     const fetchSavedRecipes = async () => {
       try {
-        const userId = 2; // Default user
+        if (!session) {
+          console.log('No session found');
+          setLoading(false);
+          return;
+        }
+        const userId = session.user?.id;
+        console.log('Fetching recipes for userId:', userId);
         const recipes = await getSavedRecipes(userId);
         setSavedRecipes(recipes);
       } catch (error) {
@@ -23,7 +31,7 @@ const RecipeBook = () => {
     };
 
     fetchSavedRecipes();
-  }, []);
+  }, [session]);
 
   return (
     <div className='container mx-auto px-4 py-10'>
