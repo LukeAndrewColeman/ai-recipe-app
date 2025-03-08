@@ -4,7 +4,7 @@ import { useState, useContext } from 'react';
 import { saveRecipe } from '@/app/actions/saveRecipe';
 import { deleteRecipe } from '@/app/actions/deleteRecipe';
 import { usePathname } from 'next/navigation';
-import { AuthContext } from '@/context/authContext';
+import { AuthContext } from '@/context/AuthContext';
 
 export default function RecipeModal({ recipe, isOpen, onClose }) {
   const [isSaving, setIsSaving] = useState(false);

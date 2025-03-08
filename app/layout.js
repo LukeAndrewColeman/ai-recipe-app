@@ -2,7 +2,7 @@ import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Poppins } from 'next/font/google';
-import { AuthProvider } from '@/context/authContext';
+import { AuthProvider } from '@/context/AuthContext';
 
 const poppins = Poppins({
   subsets: ['latin'],

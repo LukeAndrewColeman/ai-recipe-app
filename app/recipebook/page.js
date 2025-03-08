@@ -3,7 +3,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { getSavedRecipes } from '@/app/actions/getSavedRecipes';
 import RecipeList from '@/components/RecipeList';
-import { AuthContext } from '@/context/authContext';
+import { AuthContext } from '@/context/AuthContext';
 
 export default function RecipeBook() {
   const [recipes, setRecipes] = useState([]);
