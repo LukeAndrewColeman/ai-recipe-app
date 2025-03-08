@@ -2,39 +2,42 @@
 
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { logout } from '@/app/actions/logout';
-import { useAuth } from '@/hooks/useAuth';
-import { useEffect } from 'react';
+import { useContext, useState } from 'react';
+import { AuthContext } from '@/context/authContext';
 
 export default function Navbar() {
   const router = useRouter();
-  const { session, loading, refreshSession } = useAuth();
+  const { user, loading, logout } = useContext(AuthContext);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  const closeMenu = () => setIsMenuOpen(false);
 
   const handleLogout = async () => {
     try {
-      await logout();
-      await refreshSession();
-      router.push('/auth/login');
-      router.refresh();
+      const result = await logout();
+      if (result.success) {
+        router.push('/auth/login');
+      } else {
+        console.error('Logout failed:', result.error);
+      }
     } catch (error) {
       console.error('Logout failed:', error);
     }
   };
 
-  useEffect(() => {
-    if (session) {
-      router.refresh();
-    }
-  }, [session]);
-
-  console.log(session);
-
   return (
     <div className='navbar bg-base-100 shadow-lg sticky top-0 z-50 py-4'>
       <div className='container mx-auto'>
-        <div className='navbar-start'>
+        <div className='sm:navbar-start'>
           <div className='dropdown'>
-            <div tabIndex={0} role='button' className='btn btn-ghost lg:hidden'>
+            <div
+              tabIndex={0}
+              role='button'
+              className='btn btn-ghost lg:hidden'
+              onClick={toggleMenu}
+            >
               <svg
                 xmlns='http://www.w3.org/dialog/2000'
                 className='h-5 w-5'
@@ -52,40 +55,73 @@ export default function Navbar() {
             </div>
             <ul
               tabIndex={0}
-              className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52'
+              className={`menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 ${
+                isMenuOpen ? 'block' : 'hidden'
+              }`}
             >
               <li>
-                <a href='/'>Home</a>
+                <Link href='/' onClick={closeMenu}>
+                  Home
+                </Link>
               </li>
               <li>
-                <a href='/recipebook'>Recipebook</a>
+                <Link href='/selector' onClick={closeMenu}>
+                  Recipe Generator
+                </Link>
               </li>
               <li>
-                <a href='/selector'>Recipe Generator</a>
+                <Link href='/recipebook' onClick={closeMenu}>
+                  Recipe Book
+                </Link>
+              </li>
+              <li>
+                <div className='flex sm:hidden mt-2 border-t border-secondary/40 pt-2'>
+                  {loading ? (
+                    <div className='loading loading-spinner'></div>
+                  ) : user ? (
+                    <button
+                      onClick={() => {
+                        closeMenu();
+                        handleLogout();
+                      }}
+                      className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-start gap-2 px-8 transition-all text-center'
+                    >
+                      Log Out
+                    </button>
+                  ) : (
+                    <Link
+                      href='/auth/signup'
+                      onClick={closeMenu}
+                      className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-start gap-2 px-8 transition-all text-center'
+                    >
+                      Register/Login
+                    </Link>
+                  )}
+                </div>
               </li>
             </ul>
           </div>
-          <a href='/' className='btn btn-ghost text-xl'>
-            CuisineQuest AI
-          </a>
+          <Link href='/' className='btn btn-ghost text-xl'>
+            SmartRecipe AI
+          </Link>
         </div>
-        <div className='navbar-center hidden lg:flex'>
+        <div className='sm:navbar-center hidden lg:flex'>
           <ul className='menu menu-horizontal px-1'>
             <li>
-              <a href='/'>Home</a>
+              <Link href='/'>Home</Link>
             </li>
             <li>
-              <a href='/recipebook'>Recipebook</a>
+              <Link href='/selector'>Recipe Generator</Link>
             </li>
             <li>
-              <a href='/selector'>Recipe Generator</a>
+              <Link href='/recipebook'>Recipe Book</Link>
             </li>
           </ul>
         </div>
-        <div className='navbar-end flex'>
+        <div className='navbar-end hidden sm:flex'>
           {loading ? (
-            <span className='loading loading-spinner loading-md'></span>
-          ) : session ? (
+            <div className='loading loading-spinner'></div>
+          ) : user ? (
             <button
               onClick={handleLogout}
               className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-start gap-2 px-8 transition-all text-center'

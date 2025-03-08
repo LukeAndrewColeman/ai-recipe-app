@@ -1,33 +1,18 @@
-'use server';
-
-import prisma from '@/lib/prisma';
+import { database } from '@/config/appwrite';
+import { Query } from 'appwrite';
 
 export async function getSavedRecipes(userId) {
+  if (!userId) {
+    return { success: false, message: 'User ID is required' };
+  }
+
   try {
-    const favorites = await prisma.favorite.findMany({
-      where: {
-        userId: parseInt(userId),
-      },
-      include: {
-        recipe: true,
-      },
-    });
-
-    const recipes = favorites.map((favorite) => ({
-      id: favorite.recipe.id,
-      name: favorite.recipe.title,
-      description: favorite.recipe.description,
-      cookingTime: favorite.recipe.cookingTime
-        ? `${favorite.recipe.cookingTime} mins`
-        : 'N/A',
-      difficulty: 'Medium',
-      ingredients: favorite.recipe.ingredients,
-      instructions: favorite.recipe.instructions,
-      cuisine: favorite.recipe.cuisine,
-    }));
-
+    const recipes = await database.listDocuments('smartrecipeai', 'recipes', [
+      Query.equal('userId', userId),
+    ]);
     return recipes;
   } catch (error) {
-    return [];
+    console.error('Error fetching saved recipes:', error);
+    return { success: false, message: 'Error fetching saved recipes' };
   }
 }

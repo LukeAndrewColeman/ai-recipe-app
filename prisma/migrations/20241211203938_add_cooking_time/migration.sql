@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE `Recipe` ADD COLUMN `cookingTime` INTEGER NOT NULL DEFAULT 0;

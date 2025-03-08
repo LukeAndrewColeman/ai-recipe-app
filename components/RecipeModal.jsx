@@ -1,13 +1,18 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { saveRecipe } from '@/app/actions/saveRecipe';
 import { deleteRecipe } from '@/app/actions/deleteRecipe';
+import { usePathname } from 'next/navigation';
+import { AuthContext } from '@/context/authContext';
 
 export default function RecipeModal({ recipe, isOpen, onClose }) {
   const [isSaving, setIsSaving] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [saveStatus, setSaveStatus] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const { user } = useContext(AuthContext);
+  const currentPath = usePathname();
 
   if (!isOpen) return null;
 
@@ -15,14 +20,16 @@ export default function RecipeModal({ recipe, isOpen, onClose }) {
     try {
       setIsSaving(true);
 
-      // Prepare recipe data
       const recipeData = {
-        name: recipe.name || recipe.title,
+        title: recipe.name || recipe.title,
         description: recipe.description,
-        ingredients: recipe.ingredients,
-        instructions: recipe.instructions,
-        cuisine: recipe.cuisine,
+        ingredients: JSON.stringify(recipe.ingredients),
+        instructions: JSON.stringify(recipe.instructions),
         cookingTime: recipe.cookingTime?.replace(' mins', '') || '0',
+        servings: recipe.servings,
+        difficulty: recipe.difficulty,
+        cuisine: recipe.cuisine,
+        userId: user.$id,
       };
 
       const result = await saveRecipe(recipeData);
@@ -48,11 +55,11 @@ export default function RecipeModal({ recipe, isOpen, onClose }) {
   };
 
   const handleDeleteRecipe = async () => {
-    if (!recipe.id) return;
+    if (!recipe.$id) return;
 
     try {
       setIsDeleting(true);
-      const result = await deleteRecipe(recipe.id);
+      const result = await deleteRecipe(recipe.$id);
 
       setSaveStatus({
         success: result.success,
@@ -78,22 +85,24 @@ export default function RecipeModal({ recipe, isOpen, onClose }) {
 
   return (
     <div className='fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 overflow-y-auto'>
-      <div className='rounded-lg max-w-3xl w-full my-8 backdrop-blur-xl'>
-        <div className='p-6 border-b flex justify-between items-center bg-[#1B3C6F] text-white rounded-t-lg'>
-          <h2 className='text-2xl font-bold'>
+      <div className='rounded-xl max-w-3xl w-full mb-8 backdrop-blur-xl'>
+        <div className='flex justify-end'>
+          {saveStatus && (
+            <span className='text-white'>{saveStatus.message}</span>
+          )}
+          <button
+            onClick={onClose}
+            className='btn btn-circle btn-ghost text-white text-xl mb-1 ml-auto'
+          >
+            ✕
+          </button>
+        </div>
+        <div className='p-6 border-b flex flex-col md:flex-row justify-between md:items-center gap-4 bg-[#1B3C6F] text-white rounded-t-xl'>
+          <h2 className='text-2xl font-bold max-w-[30rem]'>
             {recipe?.title || recipe?.name || 'Untitled Recipe'}
           </h2>
           <div className='flex items-center gap-4'>
-            {saveStatus && (
-              <span
-                className={`text-sm ${
-                  saveStatus.success ? 'text-green-400' : 'text-red-400'
-                }`}
-              >
-                {saveStatus.message}
-              </span>
-            )}
-            {!recipe.nutritionFacts ? (
+            {currentPath === '/recipebook' ? (
               <button
                 onClick={handleDeleteRecipe}
                 disabled={isDeleting}
@@ -108,7 +117,7 @@ export default function RecipeModal({ recipe, isOpen, onClose }) {
                   'Delete Recipe'
                 )}
               </button>
-            ) : (
+            ) : user ? (
               <button
                 onClick={handleSaveRecipe}
                 disabled={isSaving}
@@ -123,27 +132,28 @@ export default function RecipeModal({ recipe, isOpen, onClose }) {
                   'Save Recipe'
                 )}
               </button>
+            ) : (
+              <a
+                href='/auth/login'
+                className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-center gap-2 px-4 transition-all text-white'
+              >
+                Login to save recipes
+              </a>
             )}
-            <button
-              onClick={onClose}
-              className='btn btn-circle btn-ghost text-white text-xl'
-            >
-              ✕
-            </button>
           </div>
         </div>
 
         {/* Modal Content */}
-        <div className='p-6 space-y-8 max-h-[70vh] overflow-y-auto bg-white shadow-lg border'>
+        <div className='p-4 md:p-0 max-h-[70vh] overflow-y-auto bg-white shadow-lg border rounded-b-xl'>
           {/* Description */}
-          <div className='space-y-4'>
+          <div className='p-2 md:p-6'>
             <p className='text-gray-700 text-lg'>{recipe.description}</p>
           </div>
 
           {/* Quick Facts */}
           <div className='grid grid-cols-1 sm:grid-cols-3 gap-4'>
             {(recipe.cookingTime || recipe.prepTime) && (
-              <div className='bg-white rounded-lg p-4 shadow-md'>
+              <div className='bg-white rounded-lg p-2 md:p-6'>
                 <h3 className='font-semibold mb-1'>Cooking Time</h3>
                 <p className='text-gray-700'>
                   {recipe.cookingTime} {recipe.prepTime}
@@ -151,13 +161,13 @@ export default function RecipeModal({ recipe, isOpen, onClose }) {
               </div>
             )}
             {recipe.difficulty && (
-              <div className='bg-white rounded-lg p-4 shadow-md'>
+              <div className='bg-white rounded-lg p-2 md:p-6'>
                 <h3 className='font-semibold mb-1'>Difficulty</h3>
                 <p className='text-gray-700'>{recipe.difficulty}</p>
               </div>
             )}
             {recipe.servings && (
-              <div className='bg-white rounded-lg p-4 shadow-md'>
+              <div className='bg-white rounded-lg p-2 md:p-6'>
                 <h3 className='font-semibold mb-1'>Servings</h3>
                 <p className='text-gray-700'>{recipe.servings}</p>
               </div>
@@ -165,7 +175,7 @@ export default function RecipeModal({ recipe, isOpen, onClose }) {
           </div>
 
           {/* Ingredients */}
-          <div className='bg-white rounded-lg p-6 shadow-md'>
+          <div className='bg-white rounded-lg p-2 md:p-6  '>
             <h3 className='text-xl font-semibold mb-4'>Ingredients</h3>
             <ul className='space-y-2'>
               {recipe.ingredients ? (
@@ -187,7 +197,7 @@ export default function RecipeModal({ recipe, isOpen, onClose }) {
           </div>
 
           {/* Instructions */}
-          <div className='bg-white rounded-lg p-6 shadow-md '>
+          <div className='bg-white rounded-lg p-2 md:p-6'>
             <h3 className='text-xl font-semibold mb-4'>Instructions</h3>
             <ol className='space-y-4'>
               {recipe.instructions ? (
@@ -207,25 +217,6 @@ export default function RecipeModal({ recipe, isOpen, onClose }) {
               )}
             </ol>
           </div>
-
-          {/* Nutrition Facts - Only show if data exists */}
-          {recipe.nutritionFacts &&
-            typeof recipe.nutritionFacts === 'object' && (
-              <div className='bg-white rounded-lg p-6 shadow-md'>
-                <h3 className='text-xl font-semibold mb-4'>Nutrition Facts</h3>
-                <div className='grid grid-cols-2 sm:grid-cols-4 gap-4'>
-                  {Object.entries(recipe.nutritionFacts).map(([key, value]) => (
-                    <div
-                      key={key}
-                      className='bg-white/50 p-3 rounded-lg text-center'
-                    >
-                      <h4 className='font-semibold capitalize mb-1'>{key}</h4>
-                      <p className='text-gray-700'>{value}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
         </div>
       </div>
     </div>

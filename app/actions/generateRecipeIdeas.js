@@ -2,23 +2,48 @@
 
 import genAI from '@/lib/gemini';
 
+// Add rate limiting variables
+let lastRequestTimestamp = 0;
+const RATE_LIMIT_INTERVAL = 1000; // 1 second between requests
+
 export async function generateRecipeIdeas(cuisine) {
   if (!process.env.GOOGLE_AI_API_KEY) {
     throw new Error('API key not configured');
   }
 
+  // Add rate limiting check
+  const now = Date.now();
+  const timeSinceLastRequest = now - lastRequestTimestamp;
+  if (timeSinceLastRequest < RATE_LIMIT_INTERVAL) {
+    throw new Error('Please wait a moment before trying again');
+  }
+  lastRequestTimestamp = now;
+
   try {
     const model = genAI.getGenerativeModel({
-      model: 'gemini-pro',
+      model: 'gemini-1.5-flash',
       generationConfig: {
         maxOutputTokens: 2048,
         temperature: 0.9,
       },
     });
 
-    const prompt = `Generate 3 UNIQUE and CREATIVE recipe ideas for ${cuisine} cuisine. Each recipe should be different.
-    Use UK measurements (grams, milliliters), UK terminology (e.g., coriander instead of cilantro, aubergine instead of eggplant),and UK nutritional information formats. all recipes should have unique ids.
-    Return ONLY a JSON object with this exact structure, no additional text or markdown:
+    const prompt = `Generate 3 recipe ideas for ${cuisine} cuisine that are authentic and feasible to make at home that are unique.
+
+    Each request MUST generate completely new recipes with variety across:
+      •	Cooking method (e.g., grilling, baking, frying, steaming)
+      •	Main ingredients (to avoid repetition)
+
+    Each recipe MUST:
+      •	Be distinctly different from the others in style and ingredients
+      •	Use realistic portions and accurate cooking times
+      •	Include clear, specific measurements
+      •	Follow UK conventions:
+      •	Use metric measurements (grams, millilitres)
+      •	Use British terminology (e.g., coriander, aubergine, courgette)
+      •	Follow UK nutritional formatting
+      •	Have a dynamically generated unique ID
+        Return ONLY a JSON object with this exact structure, no additional text or markdown:
     {
       "recipes": [
         {
@@ -30,15 +55,6 @@ export async function generateRecipeIdeas(cuisine) {
           "servings": "4",
           "ingredients": ["200g ingredient 1", "500ml ingredient 2"],
           "instructions": ["step 1", "step 2"],
-          "nutritionFacts": {
-            "calories": "500 kcal",
-            "protein": "20g",
-            "carbohydrates": "60g",
-            "fat": "25g",
-            "saturates": "10g",
-            "sugars": "15g",
-            "salt": "1.5g"
-          }
         }
       ]
     }`;
@@ -82,7 +98,6 @@ export async function generateRecipeIdeas(cuisine) {
           'servings',
           'ingredients',
           'instructions',
-          'nutritionFacts',
         ];
         const missingFields = requiredFields.filter((field) => !recipe[field]);
 

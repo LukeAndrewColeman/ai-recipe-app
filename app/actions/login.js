@@ -1,22 +1,14 @@
-'use server';
-
-import { signIn } from '@/app/auth';
+import { account } from '@/config/appwrite';
 
 export async function authenticate(formData) {
   try {
-    const result = await signIn('credentials', {
-      email: formData.get('email'),
-      password: formData.get('password'),
-      redirect: false,
-    });
-
-    if (result?.error) {
-      return { error: 'Invalid credentials' };
-    }
-
-    return { success: true };
+    const email = formData.get('email');
+    const password = formData.get('password');
+    const session = await account.createEmailPasswordSession(email, password);
+    const response = await account.get();
+    return { success: true, message: 'Login successful', session };
   } catch (error) {
-    console.error('Authentication error:', error);
-    return { error: 'Something went wrong' };
+    console.error('Error logging in:', error);
+    return { success: false, message: 'Error logging in' };
   }
 }

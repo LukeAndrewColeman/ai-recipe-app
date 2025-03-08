@@ -1,28 +1,35 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useRouter } from 'next/navigation';
-import { authenticate } from '@/app/actions/login';
-import { useAuth } from '@/hooks/useAuth';
 import Link from 'next/link';
+import { AuthContext } from '@/context/authContext';
 
 export default function LoginPage() {
   const router = useRouter();
+  const { login } = useContext(AuthContext);
+
   const [error, setError] = useState(null);
-  const { refreshSession } = useAuth();
+  const [loading, setLoading] = useState(false);
 
   async function handleSubmit(formData) {
+    setLoading(true);
     try {
-      const result = await authenticate(formData);
+      const email = formData.get('email');
+      const password = formData.get('password');
 
-      if (result?.error) {
-        setError(result.error);
+      const result = await login(email, password);
+
+      if (!result.success) {
+        setError(result.error || 'Failed to log in');
       } else {
-        await refreshSession();
         router.push('/selector');
       }
     } catch (error) {
       setError('Something went wrong');
+      console.error('Login error:', error);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -75,7 +82,7 @@ export default function LoginPage() {
 
         <div className='text-center mt-4'>
           <Link href='/auth/signup' className='text-[#1B3C6E] hover:underline'>
-            Don&apos;t have an account? Sign up here
+            Don&apos;t have an account? Sign up
           </Link>
         </div>
       </form>

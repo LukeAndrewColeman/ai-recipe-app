@@ -37,6 +37,20 @@ export default function RegisterPage() {
         )}
 
         <div>
+          <label htmlFor='name' className='block text-sm font-medium'>
+            Name
+          </label>
+          <input
+            type='text'
+            name='name'
+            id='name'
+            required
+            className='mt-1 block w-full rounded border p-2'
+            autoComplete='name'
+          />
+        </div>
+
+        <div>
           <label htmlFor='email' className='block text-sm font-medium'>
             Email
           </label>

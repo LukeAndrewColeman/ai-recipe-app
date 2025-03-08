@@ -1,28 +1,15 @@
-'use server';
-
-import { PrismaClient } from '@prisma/client';
-
-// Initialize Prisma Client
-const prisma = new PrismaClient();
+import { database } from '@/config/appwrite';
 
 export async function deleteRecipe(recipeId) {
   try {
-    // Just delete the recipe - the cascade will handle favorites automatically
-    await prisma.recipe.delete({
-      where: {
-        id: recipeId,
-      },
-    });
-
-    return {
-      success: true,
-      message: 'Recipe deleted successfully',
-    };
+    const recipe = await database.deleteDocument(
+      'smartrecipeai',
+      'recipes',
+      recipeId
+    );
+    return { success: true, message: 'Recipe deleted successfully', recipe };
   } catch (error) {
     console.error('Error deleting recipe:', error);
-    return {
-      success: false,
-      message: 'Failed to delete recipe',
-    };
+    return { success: false, message: 'Failed to delete recipe' };
   }
 }

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import RecipeModal from './RecipeModal';
+import RecipeModal from '@/components/RecipeModal';
 
 export default function RecipeList({ recipes }) {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
@@ -17,10 +17,10 @@ export default function RecipeList({ recipes }) {
 
   return (
     <>
-      <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
-        {recipes.map((recipe) => (
+      <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+        {recipes.map((recipe, index) => (
           <div
-            key={recipe.id}
+            key={`recipe-${index}`}
             className='card bg-base-100 shadow-xl cursor-pointer hover:shadow-2xl transition-shadow'
             onClick={() => handleOpenModal(recipe)}
           >
