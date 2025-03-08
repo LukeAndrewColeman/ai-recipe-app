@@ -84,62 +84,64 @@ export default function RecipeModal({ recipe, isOpen, onClose }) {
   };
 
   return (
-    <div className='fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 overflow-y-auto'>
+    <div className='fixed inset-0 bg-black/80 z-50 flex justify-center p-4 md:p-8 overflow-y-auto'>
       <div className='rounded-xl max-w-3xl w-full mb-8 backdrop-blur-xl'>
-        <div className='flex justify-end'>
-          {saveStatus && (
-            <span className='text-white'>{saveStatus.message}</span>
-          )}
-          <button
-            onClick={onClose}
-            className='btn btn-circle btn-ghost text-white text-xl mb-1 ml-auto'
-          >
-            ✕
-          </button>
-        </div>
-        <div className='p-6 border-b flex flex-col md:flex-row justify-between md:items-center gap-4 bg-[#1B3C6F] text-white rounded-t-xl'>
-          <h2 className='text-2xl font-bold max-w-[30rem]'>
-            {recipe?.title || recipe?.name || 'Untitled Recipe'}
-          </h2>
-          <div className='flex items-center gap-4'>
-            {currentPath === '/recipebook' ? (
-              <button
-                onClick={handleDeleteRecipe}
-                disabled={isDeleting}
-                className='btn bg-red-500/20 border border-red-500/40 hover:border-red-500 hover:bg-red-500/40 normal-case flex items-center justify-center gap-2 px-4 transition-all text-white'
-              >
-                {isDeleting ? (
-                  <>
-                    <span className='loading loading-spinner loading-sm'></span>
-                    Deleting...
-                  </>
-                ) : (
-                  'Delete Recipe'
-                )}
-              </button>
-            ) : user ? (
-              <button
-                onClick={handleSaveRecipe}
-                disabled={isSaving}
-                className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-center gap-2 px-4 transition-all text-white'
-              >
-                {isSaving ? (
-                  <>
-                    <span className='loading loading-spinner loading-sm'></span>
-                    Saving...
-                  </>
-                ) : (
-                  'Save Recipe'
-                )}
-              </button>
-            ) : (
-              <a
-                href='/auth/login'
-                className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-center gap-2 px-4 transition-all text-white'
-              >
-                Login to save recipes
-              </a>
+        <div className='p-6 border-b bg-[#1B3C6F] text-white rounded-t-xl'>
+          <div className='flex justify-end'>
+            {saveStatus && (
+              <span className='text-white'>{saveStatus.message}</span>
             )}
+            <button
+              onClick={onClose}
+              className='btn btn-circle btn-ghost text-white text-xl mb-1 ml-auto'
+            >
+              ✕
+            </button>
+          </div>
+          <div className='flex flex-col md:flex-row justify-between md:items-center gap-4'>
+            <h2 className='text-2xl font-bold max-w-[30rem]'>
+              {recipe?.title || recipe?.name || 'Untitled Recipe'}
+            </h2>
+            <div className='flex items-center gap-4'>
+              {currentPath === '/recipebook' ? (
+                <button
+                  onClick={handleDeleteRecipe}
+                  disabled={isDeleting}
+                  className='btn bg-red-500/20 border border-red-500/40 hover:border-red-500 hover:bg-red-500/40 normal-case flex items-center justify-center gap-2 px-4 transition-all text-white'
+                >
+                  {isDeleting ? (
+                    <>
+                      <span className='loading loading-spinner loading-sm'></span>
+                      Deleting...
+                    </>
+                  ) : (
+                    'Delete Recipe'
+                  )}
+                </button>
+              ) : user ? (
+                <button
+                  onClick={handleSaveRecipe}
+                  disabled={isSaving}
+                  className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-center gap-2 px-4 transition-all text-white'
+                >
+                  {isSaving ? (
+                    <>
+                      <span className='loading loading-spinner loading-sm'></span>
+                      Saving...
+                    </>
+                  ) : (
+                    'Save Recipe'
+                  )}
+                </button>
+              ) : (
+                <a
+                  href='/auth/login'
+                  className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-center gap-2 px-4 transition-all text-white'
+                >
+                  Login to save recipes
+                </a>
+              )}
+            </div>
           </div>
         </div>
 
