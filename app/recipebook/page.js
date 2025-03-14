@@ -28,7 +28,7 @@ export default function RecipeBook() {
     return (
       <div className='container mx-auto px-4 py-10'>
         <div className='mb-8'>
-          <h1 className='text-4xl font-bold mb-3'>My Recipe Book</h1>
+          <h1 className='text-4xl font-bold mb-3'>Your Recipe Book</h1>
           <p className='text-neutral/70'>
             Your collection of saved recipes from around the world.
           </p>
@@ -53,7 +53,7 @@ export default function RecipeBook() {
   return (
     <div className='container mx-auto px-4 py-10'>
       <div className='mb-8'>
-        <h1 className='text-4xl font-bold mb-3'>My Recipe Book</h1>
+        <h1 className='text-4xl font-bold mb-3'>{user.name}'s Recipe Book</h1>
         <p className='text-neutral/70'>
           Your collection of saved recipes from around the world.
         </p>
