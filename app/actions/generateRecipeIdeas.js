@@ -28,11 +28,7 @@ export async function generateRecipeIdeas(cuisine) {
       },
     });
 
-    const prompt = `Generate 3 recipe ideas for ${cuisine} cuisine that are authentic and feasible to make at home that are unique.
-
-    Each request MUST generate completely new recipes with variety across:
-      •	Cooking method (e.g., grilling, baking, frying, steaming)
-      •	Main ingredients (to avoid repetition)
+    const prompt = `Generate 3 recipe ideas for ${cuisine} cuisine that are authentic and feasible to make at home, these recipes should be somewhat traditional but have a modern twist.
 
     Each recipe MUST:
       •	Be distinctly different from the others in style and ingredients
