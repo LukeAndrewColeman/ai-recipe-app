@@ -1,6 +1,9 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import HowItWorks from '@/components/HowItWorks';
+import { motion } from 'motion/react';
 
 export default function Home() {
   const steps = [
@@ -25,70 +28,99 @@ export default function Home() {
   ];
 
   return (
-    <div className='min-h-screen'>
-      <section className=''>
-        <div className='pb-40 pt-20 relative bg-cover bg-center bg-fixed'>
-          <div className='absolute inset-0 bg-gradient-to-r from-[#1B3B6F] to-[#66CECF]'></div>
-          <div className='container mx-auto relative px-4 max-w-4xl'>
-            <h1 className='text-5xl md:text-7xl font-bold mb-8 text-white'>
-              <span className='inline-block animate-slide-in-left'>Smart</span>
-              <span className='inline-block animate-slide-in-left-delay-1'>
-                Recipe
-              </span>{' '}
-              <span className='relative inline-block animate-slide-in-left-delay-2'>
-                <span className='text-[#66CECF]'>AI</span>
-              </span>{' '}
-            </h1>
-            <h2 className='text-2xl md:text-3xl font-medium mb-6 text-white/90'>
-              Discover Authentic Recipes from Around the World
-            </h2>
-            <p className='text-lg text-white/80 max-w-2xl leading-relaxed'>
-              Select a cuisine to discover authentic recipes and cooking
-              inspiration, all in one place. Let AI be your personal chef!
-            </p>
+    <section className='min-h-screen'>
+      <div className='pb-40 pt-20 relative bg-cover bg-center bg-fixed'>
+        <div className='absolute inset-0 bg-gradient-to-r from-[#1B3B6F] to-[#66CECF]'></div>
+        <div className='container mx-auto relative px-4 max-w-4xl'>
+          <h1 className='text-5xl md:text-7xl font-bold mb-8 text-white'>
+            <span className='inline-block animate-slide-in-left'>Smart</span>
+            <span className='inline-block animate-slide-in-left-delay-1'>
+              Recipe
+            </span>{' '}
+            <span className='relative inline-block animate-slide-in-left-delay-2'>
+              <span className='text-[#66CECF]'>AI</span>
+            </span>{' '}
+          </h1>
+          <h2 className='text-2xl md:text-3xl font-medium mb-6 text-white/90'>
+            Discover Authentic Recipes from Around the World
+          </h2>
+          <p className='text-lg text-white/80 max-w-2xl leading-relaxed'>
+            Select a cuisine to discover authentic recipes and cooking
+            inspiration, all in one place. Let AI be your personal chef!
+          </p>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, scale: [1, 1.02, 1] }}
+            transition={{
+              duration: 0.5,
+              scale: {
+                delay: 0.5,
+                duration: 3,
+                repeat: Infinity,
+                repeatType: 'reverse',
+              },
+            }}
+          >
             <Link
               href='/selector'
               className='mt-8 btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-start gap-2 px-8 transition-all w-fit text-white'
             >
               Select a cuisine to get started →
             </Link>
-          </div>
+          </motion.div>
         </div>
-        <div className='container mx-auto px-4 -mt-24 relative z-10'>
-          <div className='rounded-2xl shadow-2xl overflow-hidden border border-base-200'>
-            <Image
-              src='/smartrecipe-ai-screenshot.png'
-              alt='SmartRecipe AI App Interface'
-              width={1200}
-              height={675}
-              className='w-full h-auto'
-              priority
-            />
-          </div>
-        </div>
+      </div>
+      <div className='container mx-auto px-4 -mt-24 relative z-10'>
+        <motion.div
+          className='rounded-2xl shadow-2xl overflow-hidden border border-base-200'
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <Image
+            src='/smartrecipe-ai-screenshot.png'
+            alt='SmartRecipe AI App Interface'
+            width={1200}
+            height={675}
+            className='w-full h-auto'
+            priority
+          />
+        </motion.div>
+      </div>
 
-        <HowItWorks steps={steps} />
+      <HowItWorks steps={steps} />
 
-        {/* Recipe Book Section */}
-        <div className='bg-base-200 py-20'>
-          <div className='flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto px-6 gap-12'>
-            <div className='flex-1'>
-              <h2 className='text-3xl font-bold mb-4'>
-                Your Digital Recipe Book
-              </h2>
-              <p className='text-base-content/70 leading-relaxed mb-6 max-w-lg'>
-                Save your favorite AI-generated recipes in your personal digital
-                recipe book. Organise and access your recipes anytime, anywhere.
-              </p>
+      {/* Recipe Book Section */}
+      <div className='bg-base-200 py-20'>
+        <div className='flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto px-6 gap-12'>
+          <div className='flex-1'>
+            <h2 className='text-3xl font-bold mb-4'>
+              Your Digital Recipe Book
+            </h2>
+            <p className='text-base-content/70 leading-relaxed mb-6 max-w-lg'>
+              Save your favorite AI-generated recipes in your personal digital
+              recipe book. Organise and access your recipes anytime, anywhere.
+            </p>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
               <Link
                 href='/recipebook'
                 className='btn bg-primary hover:bg-primary/90 text-white normal-case'
               >
                 Open Recipe Book →
               </Link>
-            </div>
-            <div className='flex-1'>
-              <div className='rounded-xl overflow-hidden shadow-xl'>
+            </motion.div>
+          </div>
+          <div className='flex-1'>
+            <div className='rounded-xl overflow-hidden shadow-xl'>
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
                 <Image
                   src='/recipe-book-screenshot.png'
                   alt='Digital Recipe Book Interface'
@@ -96,13 +128,14 @@ export default function Home() {
                   height={400}
                   className='w-full h-auto'
                 />
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Meal Planner Section */}
-        {/* <div className='py-20'>
+      {/* Meal Planner Section */}
+      {/* <div className='py-20'>
           <div className='flex flex-col md:flex-row-reverse items-center justify-between max-w-6xl mx-auto px-6 gap-12'>
             <div className='flex-1'>
               <h2 className='text-3xl font-bold mb-4'>Smart Meal Planner</h2>
@@ -132,25 +165,38 @@ export default function Home() {
           </div>
         </div> */}
 
-        <div className='flex flex-col items-center text-center max-w-3xl mx-auto my-20 px-6'>
-          <h2 className='text-3xl font-bold mb-4'>
-            Explore Our Cuisine Categories
-          </h2>
-          <p className='text-base-content/70 leading-relaxed'>
-            Browse through our diverse collection of cuisines from around the
-            world. Whether you're craving Asian delicacies, European classics,
-            American comfort food, or something unique, we've got you covered.
-            Select a cuisine below to discover authentic recipes and cooking
-            inspiration.
-          </p>
+      <div className='flex flex-col items-center text-center max-w-3xl mx-auto my-20 px-6'>
+        <h2 className='text-3xl font-bold mb-4'>
+          Explore Our Cuisine Categories
+        </h2>
+        <p className='text-base-content/70 leading-relaxed'>
+          Browse through our diverse collection of cuisines from around the
+          world. Whether you're craving Asian delicacies, European classics,
+          American comfort food, or something unique, we've got you covered.
+          Select a cuisine below to discover authentic recipes and cooking
+          inspiration.
+        </p>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, scale: [1, 1.03, 1] }}
+          transition={{
+            duration: 0.5,
+            scale: {
+              delay: 0.5,
+              duration: 3,
+              repeat: Infinity,
+              repeatType: 'reverse',
+            },
+          }}
+        >
           <Link
             href='/selector'
             className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-start gap-2 px-8 transition-all text-center mt-8'
           >
             Select a Cuisine to get started →
           </Link>
-        </div>
-      </section>
-    </div>
+        </motion.div>
+      </div>
+    </section>
   );
 }

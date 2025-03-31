@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useContext, useState } from 'react';
 import { AuthContext } from '@/context/AuthContext';
+import { motion } from 'motion/react';
 
 export default function Navbar() {
   const router = useRouter();
@@ -28,7 +29,12 @@ export default function Navbar() {
   };
 
   return (
-    <div className='navbar bg-base-100 shadow-lg sticky top-0 z-50 py-4'>
+    <motion.div
+      className='navbar bg-base-100 shadow-lg sticky top-0 z-50 py-4'
+      initial={{ opacity: 0, y: -50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className='container mx-auto'>
         <div className='sm:navbar-start'>
           <div className='dropdown'>
@@ -138,6 +144,6 @@ export default function Navbar() {
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

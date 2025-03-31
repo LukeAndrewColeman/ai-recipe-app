@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion, whileInView } from 'motion/react';
 
 export default function HowItWorks({ steps }) {
   return (
@@ -13,7 +14,13 @@ export default function HowItWorks({ steps }) {
       </div>
       <div className='grid grid-cols-1 md:grid-cols-3 gap-8 px-6'>
         {steps.map((step, index) => (
-          <div key={index} className='relative group'>
+          <motion.div
+            key={index}
+            className='relative group'
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
             <div
               className='h-full p-8 rounded-2xl bg-base-100 border border-base-200
                   shadow-lg transition-all duration-300
@@ -55,7 +62,7 @@ export default function HowItWorks({ steps }) {
                   `}
               ></div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>
