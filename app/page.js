@@ -48,24 +48,20 @@ export default function Home() {
             Select a cuisine to discover authentic recipes and cooking
             inspiration, all in one place. Let AI be your personal chef!
           </p>
-          <div
-            className='transform-wrapper'
-            style={{ transformOrigin: 'center', display: 'inline-block' }}
+          <motion.div
+            className='origin-center inline-block'
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            whileHover={{ scale: 1.05, rotate: 2, origin: 'center' }}
           >
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              whileHover={{ scale: 1.05, rotate: 2 }}
+            <Link
+              href='/selector'
+              className='mt-8 btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-start gap-2 px-8 transition-all w-fit text-white'
             >
-              <Link
-                href='/selector'
-                className='mt-8 btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-start gap-2 px-8 transition-all w-fit text-white'
-              >
-                Select a cuisine to get started →
-              </Link>
-            </motion.div>
-          </div>
+              Select a cuisine to get started →
+            </Link>
+          </motion.div>
         </div>
       </div>
       <div className='container mx-auto px-4 -mt-24 relative z-10'>
@@ -99,24 +95,20 @@ export default function Home() {
               Save your favorite AI-generated recipes in your personal digital
               recipe book. Organise and access your recipes anytime, anywhere.
             </p>
-            <div
-              className='transform-wrapper'
-              style={{ transformOrigin: 'center', display: 'inline-block' }}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className='origin-center inline-block'
+              whileHover={{ scale: 1.05, rotate: 2, origin: 'center' }}
             >
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                whileHover={{ scale: 1.05, rotate: 2 }}
+              <Link
+                href='/recipebook'
+                className='btn bg-primary hover:bg-primary/90 text-white normal-case'
               >
-                <Link
-                  href='/recipebook'
-                  className='btn bg-primary hover:bg-primary/90 text-white normal-case'
-                >
-                  Open Recipe Book →
-                </Link>
-              </motion.div>
-            </div>
+                Open Recipe Book →
+              </Link>
+            </motion.div>
           </div>
           <div className='flex-1'>
             <div className='rounded-xl overflow-hidden shadow-xl'>
@@ -180,24 +172,20 @@ export default function Home() {
           Select a cuisine below to discover authentic recipes and cooking
           inspiration.
         </p>
-        <div
-          className='transform-wrapper'
-          style={{ transformOrigin: 'center', display: 'inline-block' }}
+        <motion.div
+          className='origin-center inline-block'
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          whileHover={{ scale: 1.05, rotate: 2, origin: 'center' }}
         >
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            whileHover={{ scale: 1.05, rotate: 2 }}
+          <Link
+            href='/selector'
+            className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-start gap-2 px-8 transition-all text-center mt-8'
           >
-            <Link
-              href='/selector'
-              className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-start gap-2 px-8 transition-all text-center mt-8'
-            >
-              Select a Cuisine to get started →
-            </Link>
-          </motion.div>
-        </div>
+            Select a Cuisine to get started →
+          </Link>
+        </motion.div>
       </div>
     </section>
   );
