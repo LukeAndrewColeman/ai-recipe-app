@@ -82,9 +82,7 @@ export default function Navbar() {
               </li>
               <li>
                 <div className='flex sm:hidden mt-2 border-t border-secondary/40 pt-2'>
-                  {loading ? (
-                    <div className='loading loading-spinner'></div>
-                  ) : user ? (
+                  {user ? (
                     <button
                       onClick={() => {
                         closeMenu();
@@ -125,22 +123,30 @@ export default function Navbar() {
           </ul>
         </div>
         <div className='navbar-end hidden sm:flex'>
-          {loading ? (
-            <div className='loading loading-spinner'></div>
-          ) : user ? (
-            <button
-              onClick={handleLogout}
-              className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-start gap-2 px-8 transition-all text-center'
+          {user ? (
+            <motion.div
+              className='origin-center inline-block'
+              whileHover={{ scale: 1.05, rotate: 2, origin: 'center' }}
             >
-              Log Out
-            </button>
+              <button
+                onClick={handleLogout}
+                className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-start gap-2 px-8 transition-all text-center'
+              >
+                Log Out
+              </button>
+            </motion.div>
           ) : (
-            <Link
-              href='/auth/signup'
-              className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-start gap-2 px-8 transition-all text-center'
+            <motion.div
+              className='origin-center inline-block'
+              whileHover={{ scale: 1.05, rotate: 2, origin: 'center' }}
             >
-              Register/Login
-            </Link>
+              <Link
+                href='/auth/signup'
+                className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-start gap-2 px-8 transition-all text-center'
+              >
+                Register/Login
+              </Link>
+            </motion.div>
           )}
         </div>
       </div>

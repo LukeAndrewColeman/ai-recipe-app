@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import RecipeModal from '@/components/RecipeModal';
+import { motion } from 'motion/react';
 
 export default function RecipeList({ recipes }) {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
@@ -27,9 +28,14 @@ export default function RecipeList({ recipes }) {
             <div className='card-body'>
               <h2 className='card-title'>{recipe.title || recipe.name}</h2>
               <p className='mb-4'>{recipe.description}</p>
-              <button className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 text-neutral normal-case flex items-center justify-start gap-2 px-4 transition-all'>
-                View Recipe
-              </button>
+              <motion.div
+                className='origin-center inline-block'
+                whileHover={{ scale: 1.05, rotate: 2, origin: 'center' }}
+              >
+                <button className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 text-neutral normal-case flex items-center justify-start gap-2 px-4 transition-all'>
+                  View Recipe
+                </button>
+              </motion.div>
             </div>
           </div>
         ))}

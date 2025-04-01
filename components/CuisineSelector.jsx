@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import LoadingOverlay from './LoadingOverlay';
-
+import { motion } from 'motion/react';
 export default function CuisineSelector() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -117,24 +117,35 @@ export default function CuisineSelector() {
       {Object.entries(filteredCategories).map(
         ([category, cuisines]) =>
           cuisines.length > 0 && (
-            <div key={category} className='space-y-4'>
+            <motion.div
+              key={category}
+              className='space-y-4'
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
               <h3 className='text-lg font-semibold text-gray-700'>
                 {category}
               </h3>
               <div className='flex flex-wrap gap-3'>
                 {cuisines.map((cuisine) => (
-                  <button
+                  <motion.div
                     key={cuisine.name}
-                    onClick={() => handleCuisineClick(cuisine.name || '')}
-                    disabled={isLoading || !cuisine.name}
-                    className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 text-neutral normal-case flex items-center justify-start gap-2 px-4 transition-all'
+                    whileHover={{ scale: 1.05, rotate: 2, origin: 'center' }}
                   >
-                    <span className='text-xl'>{cuisine.icon}</span>
-                    <span className='capitalize'>{cuisine.name}</span>
-                  </button>
+                    <button
+                      key={cuisine.name}
+                      onClick={() => handleCuisineClick(cuisine.name || '')}
+                      disabled={isLoading || !cuisine.name}
+                      className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 text-neutral normal-case flex items-center justify-start gap-2 px-4 transition-all'
+                    >
+                      <span className='text-xl'>{cuisine.icon}</span>
+                      <span className='capitalize'>{cuisine.name}</span>
+                    </button>
+                  </motion.div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           )
       )}
     </div>

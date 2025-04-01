@@ -4,7 +4,7 @@ import { useEffect, useState, useContext } from 'react';
 import { getSavedRecipes } from '@/app/actions/getSavedRecipes';
 import RecipeList from '@/components/RecipeList';
 import { AuthContext } from '@/context/AuthContext';
-
+import { motion } from 'motion/react';
 export default function RecipeBook() {
   const [recipes, setRecipes] = useState([]);
   const [error, setError] = useState(null);
@@ -75,7 +75,13 @@ export default function RecipeBook() {
           </p>
         </div>
       ) : (
-        <RecipeList recipes={recipes} />
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <RecipeList recipes={recipes} />
+        </motion.div>
       )}
     </div>
   );
