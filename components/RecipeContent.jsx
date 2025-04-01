@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import { generateRecipeIdeas } from '@/app/actions/generateRecipeIdeas';
 import AIRecipeCard from './AIRecipeCard';
 import LoadingRecipeCard from './LoadingRecipeCard';
+import { motion } from 'motion/react';
 
 export default function RecipeContent({ cuisine }) {
   const [aiSuggestions, setAiSuggestions] = useState(null);
@@ -111,12 +112,14 @@ export default function RecipeContent({ cuisine }) {
           tested in the real world.
         </p>
         <div className='flex justify-center'>
-          <button
-            className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-start gap-2 px-8 transition-all text-center'
-            onClick={handleRegenerate}
-          >
-            Regenerate Recipes
-          </button>
+          <motion.div whileHover={{ scale: 1.05, rotate: 2, origin: 'center' }}>
+            <button
+              className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-start gap-2 px-8 transition-all text-center'
+              onClick={handleRegenerate}
+            >
+              Regenerate Recipes
+            </button>
+          </motion.div>
         </div>
       </div>
     </>

@@ -5,6 +5,7 @@ import { saveRecipe } from '@/app/actions/saveRecipe';
 import { deleteRecipe } from '@/app/actions/deleteRecipe';
 import { usePathname } from 'next/navigation';
 import { AuthContext } from '@/context/AuthContext';
+import { motion } from 'motion/react';
 
 export default function RecipeModal({ recipe, isOpen, onClose }) {
   const [isSaving, setIsSaving] = useState(false);
@@ -104,42 +105,54 @@ export default function RecipeModal({ recipe, isOpen, onClose }) {
             </h2>
             <div className='flex items-center gap-4'>
               {currentPath === '/recipebook' ? (
-                <button
-                  onClick={handleDeleteRecipe}
-                  disabled={isDeleting}
-                  className='btn bg-red-500/20 border border-red-500/40 hover:border-red-500 hover:bg-red-500/40 normal-case flex items-center justify-center gap-2 px-4 transition-all text-white'
+                <motion.div
+                  whileHover={{ scale: 1.05, rotate: 2, origin: 'center' }}
                 >
-                  {isDeleting ? (
-                    <>
-                      <span className='loading loading-spinner loading-sm'></span>
-                      Deleting...
-                    </>
-                  ) : (
-                    'Delete Recipe'
-                  )}
-                </button>
+                  <button
+                    onClick={handleDeleteRecipe}
+                    disabled={isDeleting}
+                    className='btn bg-red-500/20 border border-red-500/40 hover:border-red-500 hover:bg-red-500/40 normal-case flex items-center justify-center gap-2 px-4 transition-all text-white'
+                  >
+                    {isDeleting ? (
+                      <>
+                        <span className='loading loading-spinner loading-sm'></span>
+                        Deleting...
+                      </>
+                    ) : (
+                      'Delete Recipe'
+                    )}
+                  </button>
+                </motion.div>
               ) : user ? (
-                <button
-                  onClick={handleSaveRecipe}
-                  disabled={isSaving}
-                  className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-center gap-2 px-4 transition-all text-white'
+                <motion.div
+                  whileHover={{ scale: 1.05, rotate: 2, origin: 'center' }}
                 >
-                  {isSaving ? (
-                    <>
-                      <span className='loading loading-spinner loading-sm'></span>
-                      Saving...
-                    </>
-                  ) : (
-                    'Save Recipe'
-                  )}
-                </button>
+                  <button
+                    onClick={handleSaveRecipe}
+                    disabled={isSaving}
+                    className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-center gap-2 px-4 transition-all text-white'
+                  >
+                    {isSaving ? (
+                      <>
+                        <span className='loading loading-spinner loading-sm'></span>
+                        Saving...
+                      </>
+                    ) : (
+                      'Save Recipe'
+                    )}
+                  </button>
+                </motion.div>
               ) : (
-                <a
-                  href='/auth/login'
-                  className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-center gap-2 px-4 transition-all text-white'
+                <motion.div
+                  whileHover={{ scale: 1.05, rotate: 2, origin: 'center' }}
                 >
-                  Login to save recipes
-                </a>
+                  <a
+                    href='/auth/login'
+                    className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-center gap-2 px-4 transition-all text-white'
+                  >
+                    Login to save recipes
+                  </a>
+                </motion.div>
               )}
             </div>
           </div>

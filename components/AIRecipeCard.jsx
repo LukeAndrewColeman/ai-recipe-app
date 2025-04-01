@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import RecipeModal from './RecipeModal';
+import { motion } from 'motion/react';
 
 export default function AIRecipeCard({ recipe }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -36,12 +37,17 @@ export default function AIRecipeCard({ recipe }) {
             <span>📊 {recipe.difficulty || 'Difficulty N/A'}</span>
           </div>
 
-          <button
-            className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 text-neutral normal-case flex items-center justify-start gap-2 px-4 transition-all'
-            onClick={() => setIsModalOpen(true)}
+          <motion.div
+            className='origin-center w-fit'
+            whileHover={{ scale: 1.05, rotate: 2, origin: 'center' }}
           >
-            View Recipe
-          </button>
+            <button
+              className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 text-neutral normal-case flex items-center justify-start gap-2 px-4 transition-all'
+              onClick={() => setIsModalOpen(true)}
+            >
+              View Recipe
+            </button>
+          </motion.div>
         </div>
       </div>
 

@@ -29,7 +29,7 @@ export default function RecipeList({ recipes }) {
               <h2 className='card-title'>{recipe.title || recipe.name}</h2>
               <p className='mb-4'>{recipe.description}</p>
               <motion.div
-                className='origin-center inline-block'
+                className='origin-center w-fit'
                 whileHover={{ scale: 1.05, rotate: 2, origin: 'center' }}
               >
                 <button className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 text-neutral normal-case flex items-center justify-start gap-2 px-4 transition-all'>
