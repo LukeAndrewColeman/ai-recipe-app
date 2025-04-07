@@ -20,11 +20,13 @@ export default async function RootLayout({ children }) {
   return (
     <html lang='en' data-theme='moodRecipeTheme'>
       <head>
-        <Script
-          defer
-          src='https://umami.lukeacoleman.com/script.js'
-          data-website-id='b68da7d8-50fa-4554-b173-9f758412c732'
-        />
+        {process.env.ENVIRONMENT !== 'development' && (
+          <Script
+            defer
+            src='https://umami.lukeacoleman.com/script.js'
+            data-website-id='b68da7d8-50fa-4554-b173-9f758412c732'
+          />
+        )}
       </head>
       <AuthProvider>
         <body

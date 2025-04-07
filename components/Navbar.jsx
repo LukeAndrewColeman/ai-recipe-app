@@ -81,6 +81,11 @@ export default function Navbar() {
                 </Link>
               </li>
               <li>
+                <Link href='/featuredRecipes' onClick={closeMenu}>
+                  Featured Recipes
+                </Link>
+              </li>
+              <li>
                 <div className='flex sm:hidden mt-2 border-t border-secondary/40 pt-2'>
                   {user ? (
                     <button
@@ -119,6 +124,9 @@ export default function Navbar() {
             </li>
             <li>
               <Link href='/recipebook'>Recipe Book</Link>
+            </li>
+            <li>
+              <Link href='/featuredRecipes'>Featured Recipes</Link>
             </li>
           </ul>
         </div>

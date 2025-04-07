@@ -15,7 +15,6 @@ export default function RecipeBook() {
       if (user) {
         const result = await getSavedRecipes(user.$id);
         if (result.documents) {
-          console.log(result.documents);
           setRecipes(result.documents);
         }
       }
