@@ -57,7 +57,7 @@ const RecipePage = async ({ params }) => {
     return (
       <>
         <article>
-          <header className='bg-[#1B3C6F] text-center py-12'>
+          <header className='bg-[#1B3C6F] text-center pt-12 pb-32'>
             <h1 className='text-5xl font-bold text-white px-4 py-8 rounded-lg italic'>
               {recipePost.title}
             </h1>
@@ -69,24 +69,19 @@ const RecipePage = async ({ params }) => {
 
           <div className='container mx-auto px-4 py-8'>
             <section className='recipe-details flex flex-row gap-4'>
-              <p>
-                <span className='font-bold'>Difficulty:</span>{' '}
+              <p className='bg-primary/10 text-primary rounded-lg p-2'>
                 {recipePost.difficulty}
               </p>
-              <p>
-                <span className='font-bold'>Cook Time:</span>{' '}
+              <p className='bg-primary/10 text-primary rounded-lg p-2'>
                 {recipePost.cookTime}
               </p>
-              <p>
-                <span className='font-bold'>Servings:</span>{' '}
-                {recipePost.servings}
+              <p className='bg-primary/10 text-primary rounded-lg p-2'>
+                <span className=''>Servings</span> {recipePost.servings}
               </p>
             </section>
 
-            <hr className='my-8' />
-
             <section
-              className='recipe-instructions rich-text-content max-w-5xl'
+              className='recipe-instructions rich-text-content max-w-5xl mt-8'
               dangerouslySetInnerHTML={{ __html: recipePost.copy }}
             />
           </div>

@@ -166,25 +166,22 @@ export default function RecipeModal({ recipe, isOpen, onClose }) {
           </div>
 
           {/* Quick Facts */}
-          <div className='grid grid-cols-1 sm:grid-cols-3 gap-4'>
+          <div className='flex flex-row gap-4 px-6'>
             {(recipe.cookingTime || recipe.prepTime) && (
-              <div className='bg-white rounded-lg p-2 md:p-6'>
-                <h3 className='font-semibold mb-1'>Cooking Time</h3>
-                <p className='text-gray-700'>
+              <div className='bg-primary/10 text-primary rounded-lg p-2'>
+                <p>
                   {recipe.cookingTime} {recipe.prepTime}
                 </p>
               </div>
             )}
             {recipe.difficulty && (
-              <div className='bg-white rounded-lg p-2 md:p-6'>
-                <h3 className='font-semibold mb-1'>Difficulty</h3>
-                <p className='text-gray-700'>{recipe.difficulty}</p>
+              <div className='bg-primary/10 text-primary rounded-lg p-2'>
+                <p>{recipe.difficulty}</p>
               </div>
             )}
             {recipe.servings && (
-              <div className='bg-white rounded-lg p-2 md:p-6'>
-                <h3 className='font-semibold mb-1'>Servings</h3>
-                <p className='text-gray-700'>{recipe.servings}</p>
+              <div className='bg-primary/10 text-primary rounded-lg p-2'>
+                <p>{recipe.servings} servings</p>
               </div>
             )}
           </div>

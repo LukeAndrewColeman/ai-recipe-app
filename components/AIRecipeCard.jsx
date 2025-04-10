@@ -33,8 +33,12 @@ export default function AIRecipeCard({ recipe }) {
 
           {/* Quick Facts */}
           <div className='flex gap-4 text-sm text-neutral/60 mt-2'>
-            <span>🕒 {recipe.cookingTime || 'Time N/A'}</span>
-            <span>📊 {recipe.difficulty || 'Difficulty N/A'}</span>
+            <span className='bg-primary/10 text-primary rounded-lg p-2'>
+              🕒 {recipe.cookingTime || 'Time N/A'}
+            </span>
+            <span className='bg-primary/10 text-primary rounded-lg p-2'>
+              📊 {recipe.difficulty || 'Difficulty N/A'}
+            </span>
           </div>
 
           <motion.div
@@ -42,7 +46,7 @@ export default function AIRecipeCard({ recipe }) {
             whileHover={{ scale: 1.05, rotate: 2, origin: 'center' }}
           >
             <button
-              className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 text-neutral normal-case flex items-center justify-start gap-2 px-4 transition-all'
+              className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 text-neutral normal-case flex items-center justify-start gap-2 px-4 transition-all mt-4'
               onClick={() => setIsModalOpen(true)}
             >
               View Recipe
