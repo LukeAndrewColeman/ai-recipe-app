@@ -68,7 +68,7 @@ export default function Home() {
       <HowItWorks steps={steps} />
 
       {/* Recipe Book Section */}
-      <div className='bg-base-200 py-20'>
+      <div className='bg-[#E1F5F5] py-20'>
         <div className='flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto px-6 gap-12'>
           <div className='flex-1'>
             <h2 className='text-3xl font-bold mb-4'>

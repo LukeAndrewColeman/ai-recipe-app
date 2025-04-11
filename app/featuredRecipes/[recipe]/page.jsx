@@ -86,7 +86,7 @@ const RecipePage = async ({ params }) => {
             />
           </div>
         </article>
-        <div className='bg-base-200 py-12 mt-12 rounded-lg'>
+        <div className='bg-[#E1F5F5] py-12 mt-12 rounded-lg'>
           <div className='text-center'>
             <h2 className='text-2xl font-bold mb-4'>
               Want to Create Your Own Recipe?
