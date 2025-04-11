@@ -13,8 +13,8 @@ const FeaturedRecipes = async () => {
         <div className='mb-8'>
           <h1 className='text-4xl font-bold mb-3'>Featured Recipes</h1>
           <p className='text-neutral/70'>
-            Select a cuisine to discover authentic recipes and cooking
-            inspiration.
+            Discover authentic recipes and cooking inspiration, all in one
+            place.
           </p>
         </div>
         <div className='flex flex-col gap-8'>
