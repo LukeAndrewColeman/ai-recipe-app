@@ -18,14 +18,26 @@ const FeaturedRecipes = async () => {
           </p>
         </div>
         <div className='flex flex-col gap-8'>
-          <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+          <div className='flex flex-wrap flex-row gap-4'>
             {recipes.map((recipe, index) => (
               <div
                 key={`recipe-${index}`}
-                className='card bg-base-100 shadow-xl cursor-pointer hover:shadow-2xl transition-shadow'
+                className='card bg-base-100 shadow-xl cursor-pointer hover:shadow-2xl transition-shadow max-w-[400px]'
               >
                 <div className='card-body'>
                   <h2 className='card-title'>{recipe.title || recipe.name}</h2>
+                  <p
+                    className='mb-4'
+                    dangerouslySetInnerHTML={{ __html: recipe.description }}
+                  ></p>
+                  <div className='flex gap-2 mt-2'>
+                    <div className='bg-primary/10 text-primary rounded-lg p-2 w-fit'>
+                      <p>{recipe.cookTime}</p>
+                    </div>
+                    <div className='bg-primary/10 text-primary rounded-lg p-2 w-fit'>
+                      <p>{recipe.difficulty}</p>
+                    </div>
+                  </div>
                   <div className='origin-center w-fit'>
                     <Link
                       href={`/featuredRecipes/${recipe.slug}`}

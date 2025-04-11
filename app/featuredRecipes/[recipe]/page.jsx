@@ -57,8 +57,8 @@ const RecipePage = async ({ params }) => {
     return (
       <>
         <article>
-          <header className='bg-[#1B3C6F] text-center pt-12 pb-32'>
-            <h1 className='text-5xl font-bold text-white px-4 py-8 rounded-lg italic'>
+          <header className='bg-gradient-to-r to-[#64CCCD] from-[#1B3C6F] text-center pt-12 pb-32'>
+            <h1 className='text-5xl font-bold text-white px-4 py-8 rounded-lg uppercase'>
               {recipePost.title}
             </h1>
             <div

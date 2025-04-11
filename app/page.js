@@ -64,23 +64,6 @@ export default function Home() {
           </motion.div>
         </div>
       </div>
-      <div className='container mx-auto px-4 -mt-24 relative z-10'>
-        <motion.div
-          className='rounded-2xl shadow-2xl overflow-hidden border border-base-200'
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Image
-            src='/smartrecipe-ai-screenshot.png'
-            alt='SmartRecipe AI App Interface'
-            width={1200}
-            height={675}
-            className='w-full h-auto'
-            priority
-          />
-        </motion.div>
-      </div>
 
       <HowItWorks steps={steps} />
 
