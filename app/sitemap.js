@@ -1,5 +1,7 @@
 import getRecipes from '@/app/actions/getRecipes';
 
+export const revalidate = 3600;
+
 export default async function sitemap() {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const recipes = await getRecipes();
