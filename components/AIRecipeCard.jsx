@@ -34,10 +34,10 @@ export default function AIRecipeCard({ recipe }) {
           {/* Quick Facts */}
           <div className='flex gap-4 text-sm text-neutral/60 mt-2'>
             <span className='bg-primary/10 text-primary rounded-lg p-2'>
-              🕒 {recipe.cookingTime || 'Time N/A'}
+              {recipe.cookingTime || 'Time N/A'}
             </span>
             <span className='bg-primary/10 text-primary rounded-lg p-2'>
-              📊 {recipe.difficulty || 'Difficulty N/A'}
+              {recipe.difficulty || 'Difficulty N/A'}
             </span>
           </div>
 

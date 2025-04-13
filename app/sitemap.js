@@ -40,6 +40,18 @@ export default async function sitemap() {
       changeFrequency: 'weekly',
       priority: 0.5,
     },
+    {
+      url: `${baseUrl}/auth/signup`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/auth/login`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.5,
+    },
     ...recipePosts,
   ];
 }
