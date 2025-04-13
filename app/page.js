@@ -61,6 +61,81 @@ export default function Home() {
 
       <HowItWorks steps={steps} />
 
+      {/* Split Authentication CTA Section */}
+      <div className='grid grid-cols-1 md:grid-cols-2 min-h-[400px]'>
+        {/* Register Block */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          className='bg-[#0F2447] p-12 flex flex-col items-center justify-center text-center relative overflow-hidden'
+        >
+          <div className='absolute inset-0 bg-gradient-to-br from-[#0F2447] to-[#1B3B6F] opacity-70'></div>
+          <div className='relative z-10'>
+            <h2 className='text-2xl md:text-3xl font-bold text-white mb-4'>
+              Start Your Journey Today
+            </h2>
+            <p className='text-white mb-6 max-w-sm mx-auto'>
+              Create your free account and unlock:
+            </p>
+            <ul className='text-white mb-8 space-y-2 text-sm'>
+              <li>✓ Personalized recipe recommendations</li>
+              <li>✓ Save unlimited favorite recipes</li>
+              <li>✓ Join our cooking community</li>
+            </ul>
+            <motion.div
+              className='origin-center inline-block'
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              whileHover={{ scale: 1.05, rotate: 2, origin: 'center' }}
+            >
+              <Link
+                href='/auth/signup'
+                className='btn bg-secondary/80 border border-secondary hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-start gap-2 px-8 transition-all text-center min-w-[200px]'
+              >
+                Get Started Free →
+              </Link>
+            </motion.div>
+            <p className='text-white/60 text-xs mt-4'>
+              No credit card required
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Login Block */}
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          className='bg-[#1B3B6F] p-12 flex flex-col items-center justify-center text-center relative overflow-hidden'
+        >
+          <div className='absolute inset-0 bg-gradient-to-br from-[#1B3B6F] to-[#2B4B8F] opacity-50'></div>
+          <div className='relative z-10'>
+            <h2 className='text-2xl md:text-3xl font-bold text-white mb-4'>
+              Welcome Back
+            </h2>
+            <p className='text-white mb-6 max-w-sm mx-auto'>
+              Access your saved recipes and continue your culinary journey
+            </p>
+            <motion.div
+              className='origin-center inline-block'
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              whileHover={{ scale: 1.05, rotate: 2, origin: 'center' }}
+            >
+              <Link
+                href='/auth/login'
+                className='btn bg-white text-primary hover:bg-white/90 normal-case px-8 min-w-[200px]'
+              >
+                Log In →
+              </Link>
+            </motion.div>
+          </div>
+        </motion.div>
+      </div>
+
       {/* Recipe Book Section */}
       <div className='bg-[#E1F5F5] py-20'>
         <div className='flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto px-6 gap-12'>
@@ -87,7 +162,7 @@ export default function Home() {
               </Link>
             </motion.div>
           </div>
-          <div className='flex-1'>
+          <div className='flex-1 row-auto rotate-1'>
             <div className='rounded-xl overflow-hidden shadow-xl'>
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
@@ -108,7 +183,7 @@ export default function Home() {
       </div>
 
       {/* Featured Recipes Section */}
-      <div className='pt-20 relative overflow-hidden'>
+      {/* <div className='pt-20 relative overflow-hidden'>
         <div className='max-w-6xl mx-auto px-6 relative'>
           <div className='text-center mb-10'>
             <span className='inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4'>
@@ -188,7 +263,7 @@ export default function Home() {
             </motion.div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className='flex flex-col items-center text-center max-w-3xl mx-auto my-20 px-6'>
         <h2 className='text-3xl font-bold mb-4'>
