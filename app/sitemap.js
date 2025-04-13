@@ -1,59 +1,43 @@
-import { headers } from 'next/headers';
-import { VALID_CUISINES } from './cuisines/[cuisine]/page';
+import getRecipes from '@/app/actions/getRecipes';
 
 export default async function sitemap() {
-  // Get the host from the headers
-  const headersList = headers();
-  const host = headersList.get('host') || 'localhost:3000';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const recipes = await getRecipes();
 
-  // Determine protocol (use HTTPS for production, HTTP for local)
-  const protocol = host.includes('localhost') ? 'http' : 'https';
+  const recipePosts = recipes.map((recipe) => ({
+    url: `${baseUrl}/featured-recipes/${recipe.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly',
+    priority: 0.5,
+  }));
 
-  // Base URL constructed dynamically
-  const baseUrl = `${protocol}://${host}`;
+  console.log('recipePosts', recipePosts);
 
-  // Core static pages
-  const staticPages = [
+  return [
     {
       url: baseUrl,
       lastModified: new Date(),
       changeFrequency: 'weekly',
-      priority: 1.0,
+      priority: 1,
     },
     {
-      url: `${baseUrl}/selector`,
+      url: `${baseUrl}/recipe-generator`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/recipebook`,
+      url: `${baseUrl}/recipe-book`,
       lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/auth/login`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: 'weekly',
       priority: 0.5,
     },
     {
-      url: `${baseUrl}/auth/signup`,
+      url: `${baseUrl}/featured-recipes`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: 'weekly',
       priority: 0.5,
     },
+    ...recipePosts,
   ];
-
-  // Generate cuisine pages
-  const cuisinePages = VALID_CUISINES.map((cuisine) => ({
-    url: `${baseUrl}/cuisines/${cuisine}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly',
-    priority: 0.7,
-  }));
-
-  // Combine all pages
-  return [...staticPages, ...cuisinePages];
 }

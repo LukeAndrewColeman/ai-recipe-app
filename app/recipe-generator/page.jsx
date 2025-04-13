@@ -1,9 +1,9 @@
 import CuisineSelector from '@/components/CuisineSelector';
 
 export const metadata = {
-  title: 'SmartRecipe AI - Selector',
+  title: 'Generate tasty and healthy recipes with AI | SmartRecipe AI',
   description:
-    'Select your favorite cuisine and let AI generate recipes for you!',
+    'Generate tasty and healthy recipes with AI. Choose your favorite cuisine and let AI generate recipes for you!',
 };
 
 const Selector = () => {

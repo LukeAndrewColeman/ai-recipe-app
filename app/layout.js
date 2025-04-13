@@ -12,8 +12,11 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: 'SmartRecipe AI',
-  description: 'Discover recipes from your favorite cuisines with AI!',
+  title: 'SmartRecipe AI | Generate tasty and healthy recipes with AI',
+  description:
+    'Generate tasty and healthy recipes with AI. Choose your favorite cuisine and let AI generate recipes for you!',
+  keywords:
+    'recipe generator, recipe generator ai, recipe generator app, recipe generator online, recipe generator tool, recipe generator website, recipe generator software, recipe generator app, recipe generator tool, recipe generator website, recipe generator software',
 };
 
 export default async function RootLayout({ children }) {

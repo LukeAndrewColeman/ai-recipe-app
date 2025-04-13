@@ -10,7 +10,7 @@ export async function generateMetadata({ params }) {
     const recipeData = await getRecipe(recipe);
 
     return {
-      title: `${recipeData.title} Recipe | SmartRecipe Ai`,
+      title: `${recipeData.title} Recipe | SmartRecipe AI`,
       description: recipeData.description.replace(/<[^>]*>/g, '').slice(0, 160),
       openGraph: {
         title: recipeData.title,
@@ -57,8 +57,8 @@ const RecipePage = async ({ params }) => {
     return (
       <>
         <article>
-          <header className='bg-gradient-to-r to-[#64CCCD] from-[#1B3C6F] text-center pt-12 pb-32'>
-            <h1 className='text-5xl font-bold text-white px-4 py-8 rounded-lg uppercase'>
+          <header className='bg-gradient-to-r to-[#64CCCD] from-[#1B3C6F] text-center py-32'>
+            <h1 className='text-5xl font-bold text-white px-4 py-8 rounded-lg uppercase max-w-5xl mx-auto'>
               {recipePost.title}
             </h1>
             <div

@@ -168,19 +168,19 @@ export default function RecipeModal({ recipe, isOpen, onClose }) {
           {/* Quick Facts */}
           <div className='flex flex-row gap-4 px-6'>
             {(recipe.cookingTime || recipe.prepTime) && (
-              <div className='bg-primary/10 text-primary rounded-lg p-2'>
+              <div className='bg-primary/10 text-primary rounded-lg p-2 text-sm'>
                 <p>
                   {recipe.cookingTime} {recipe.prepTime}
                 </p>
               </div>
             )}
             {recipe.difficulty && (
-              <div className='bg-primary/10 text-primary rounded-lg p-2'>
+              <div className='bg-primary/10 text-primary rounded-lg p-2 text-sm'>
                 <p>{recipe.difficulty}</p>
               </div>
             )}
             {recipe.servings && (
-              <div className='bg-primary/10 text-primary rounded-lg p-2'>
+              <div className='bg-primary/10 text-primary rounded-lg p-2 text-sm'>
                 <p>{recipe.servings} servings</p>
               </div>
             )}

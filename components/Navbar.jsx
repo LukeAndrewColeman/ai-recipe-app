@@ -71,17 +71,17 @@ export default function Navbar() {
                 </Link>
               </li>
               <li>
-                <Link href='/selector' onClick={closeMenu}>
+                <Link href='/recipe-generator' onClick={closeMenu}>
                   Recipe Generator
                 </Link>
               </li>
               <li>
-                <Link href='/recipebook' onClick={closeMenu}>
+                <Link href='/recipe-book' onClick={closeMenu}>
                   Recipe Book
                 </Link>
               </li>
               <li>
-                <Link href='/featuredRecipes' onClick={closeMenu}>
+                <Link href='/featured-recipes' onClick={closeMenu}>
                   Featured Recipes
                 </Link>
               </li>
@@ -120,13 +120,13 @@ export default function Navbar() {
               <Link href='/'>Home</Link>
             </li>
             <li>
-              <Link href='/selector'>Recipe Generator</Link>
+              <Link href='/recipe-generator'>Recipe Generator</Link>
             </li>
             <li>
-              <Link href='/recipebook'>Recipe Book</Link>
+              <Link href='/recipe-book'>Recipe Book</Link>
             </li>
             <li>
-              <Link href='/featuredRecipes'>Featured Recipes</Link>
+              <Link href='/featured-recipes'>Featured Recipes</Link>
             </li>
           </ul>
         </div>

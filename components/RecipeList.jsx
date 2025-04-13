@@ -33,10 +33,10 @@ export default function RecipeList({ recipes }) {
                 whileHover={{ scale: 1.05, rotate: 2, origin: 'center' }}
               >
                 <div className='flex gap-2 mb-4'>
-                  <div className='bg-primary/10 text-primary rounded-lg p-2'>
+                  <div className='bg-primary/10 text-primary rounded-lg p-2 text-sm'>
                     <p>{recipe.cookingTime}</p>
                   </div>
-                  <div className='bg-primary/10 text-primary rounded-lg p-2'>
+                  <div className='bg-primary/10 text-primary rounded-lg p-2 text-sm'>
                     <p>{recipe.difficulty}</p>
                   </div>
                 </div>
