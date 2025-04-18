@@ -15,29 +15,47 @@ import {
   WhatsappIcon,
 } from 'react-share';
 
-const SocialShare = ({ url }) => {
+const SocialShare = ({ shareUrl }) => {
+  // Ensure URL is properly formatted
+  const formattedUrl = shareUrl.startsWith('http')
+    ? shareUrl
+    : `https://${shareUrl}`;
+
+  // Add title and description for better sharing
+  const shareTitle = 'Check out this delicious recipe!';
+  const shareDescription =
+    'I found this amazing recipe I thought you might like.';
+
   return (
     <div className='container mx-auto px-4'>
       <p className='text-gray-800 font-bold mb-4'>
         If you liked this recipe, please share it with your friends!
       </p>
       <div className='flex gap-4'>
-        <FacebookShareButton url={url}>
+        <FacebookShareButton
+          url={formattedUrl}
+          quote={shareTitle}
+          hashtag='#recipe'
+        >
           <FacebookIcon size={32} round />
         </FacebookShareButton>
-        <FacebookMessengerShareButton url={url}>
+        <FacebookMessengerShareButton url={formattedUrl}>
           <FacebookMessengerIcon size={32} round />
         </FacebookMessengerShareButton>
-        <WhatsappShareButton url={url}>
+        <WhatsappShareButton url={formattedUrl}>
           <WhatsappIcon size={32} round />
         </WhatsappShareButton>
-        <TwitterShareButton url={url}>
+        <TwitterShareButton
+          url={formattedUrl}
+          title={shareTitle}
+          hashtags={['recipe', 'cooking']}
+        >
           <TwitterIcon size={32} round />
         </TwitterShareButton>
-        <LinkedinShareButton url={url}>
+        <LinkedinShareButton url={formattedUrl}>
           <LinkedinIcon size={32} round />
         </LinkedinShareButton>
-        <RedditShareButton url={url}>
+        <RedditShareButton url={formattedUrl}>
           <RedditIcon size={32} round />
         </RedditShareButton>
       </div>

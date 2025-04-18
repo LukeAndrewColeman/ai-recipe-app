@@ -20,7 +20,7 @@ export async function generateMetadata({ params }) {
           .replace(/<[^>]*>/g, '')
           .slice(0, 160),
         type: 'article',
-        url: `https://smartrecipeai.com/featuredRecipes/${recipe}`,
+        url: `https://smartrecipeai.com/featured-recipes/${recipe}`,
       },
 
       // Add JSON-LD Schema
@@ -93,7 +93,7 @@ const RecipePage = async ({ params }) => {
             </p>
           </div>
           <SocialShare
-            url={`https://smartrecipeai.com/featured-recipes/${recipe}`}
+            shareUrl={`https://smartrecipeai.com/featured-recipes/${recipe}`}
           />
         </article>
         <div className='bg-[#E1F5F5] py-12 mt-12 rounded-lg'>
