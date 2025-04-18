@@ -101,7 +101,7 @@ const RecipePage = async ({ params }) => {
               tailored to your preferences.
             </p>
             <Link
-              href='/selector'
+              href='/recipe-generator'
               className='btn bg-primary hover:bg-primary/90 text-white normal-case px-8'
             >
               Generate a Recipe →
