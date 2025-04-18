@@ -2,6 +2,8 @@ import React from 'react';
 import getRecipe from '@/app/actions/getRecipe';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import SocialShare from '@/components/SocialShare';
+
 // Generate dynamic metadata based on recipe data
 export async function generateMetadata({ params }) {
   const { recipe } = params;
@@ -90,6 +92,9 @@ const RecipePage = async ({ params }) => {
               been tested in the real world.
             </p>
           </div>
+          <SocialShare
+            url={`https://smartrecipeai.com/featured-recipes/${recipe}`}
+          />
         </article>
         <div className='bg-[#E1F5F5] py-12 mt-12 rounded-lg'>
           <div className='text-center'>

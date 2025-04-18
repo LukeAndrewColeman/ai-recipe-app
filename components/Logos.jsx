@@ -7,7 +7,7 @@ const Logos = () => {
   return (
     <div className='text-center py-12'>
       {/* Heading */}
-      <h2 className='mb-8 text-gray-800'>Using the latest AI models</h2>
+      <h2 className='mb-8 text-gray-800'>Using the latest AI models from</h2>
 
       {/* Logos Container */}
       <div className='flex justify-center items-center gap-12'>
