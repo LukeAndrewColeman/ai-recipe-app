@@ -5,22 +5,21 @@ import Image from 'next/image';
 import HowItWorks from '@/components/HowItWorks';
 import { motion } from 'motion/react';
 import NavCta from '@/components/NavCta';
+import Logos from '@/components/Logos';
+
 export default function Home() {
   const steps = [
     {
-      icon: '🎯',
       title: 'Choose Your Cuisine',
       description: 'Select from our diverse range of global cuisines',
       gradient: 'from-blue-500 to-cyan-400',
     },
     {
-      icon: '🤖',
       title: 'AI Recipe Generation',
       description: 'Our AI creates unique recipes tailored to your choice',
       gradient: 'from-purple-500 to-pink-400',
     },
     {
-      icon: '👩‍🍳',
       title: 'Start Cooking',
       description: 'Follow detailed instructions to create amazing dishes',
       gradient: 'from-green-500 to-emerald-400',
@@ -61,6 +60,8 @@ export default function Home() {
           </div>
         </div>
 
+        <Logos />
+
         <HowItWorks steps={steps} />
 
         {/* Split Authentication CTA Section */}
@@ -80,7 +81,7 @@ export default function Home() {
               <p className='text-white mb-6 max-w-sm mx-auto'>
                 Create your free account and unlock:
               </p>
-              <ul className='text-white mb-8 space-y-2 text-sm'>
+              <ul className='text-white mb-8 space-y-2'>
                 <li>✓ Personalized recipe recommendations</li>
                 <li>✓ Save unlimited favorite recipes</li>
                 <li>✓ Join our cooking community</li>
@@ -99,9 +100,7 @@ export default function Home() {
                   Get Started Free →
                 </Link>
               </motion.div>
-              <p className='text-white/60 text-xs mt-4'>
-                No credit card required
-              </p>
+              <p className='text-white/60 mt-4'>No credit card required</p>
             </div>
           </motion.div>
 
