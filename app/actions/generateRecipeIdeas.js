@@ -2,16 +2,14 @@
 
 import genAI from '@/lib/gemini';
 
-// Add rate limiting variables
 let lastRequestTimestamp = 0;
-const RATE_LIMIT_INTERVAL = 1000; // 1 second between requests
+const RATE_LIMIT_INTERVAL = 1000;
 
 export async function generateRecipeIdeas(cuisine) {
   if (!process.env.GOOGLE_AI_API_KEY) {
     throw new Error('API key not configured');
   }
 
-  // Add rate limiting check
   const now = Date.now();
   const timeSinceLastRequest = now - lastRequestTimestamp;
   if (timeSinceLastRequest < RATE_LIMIT_INTERVAL) {
@@ -50,7 +48,7 @@ export async function generateRecipeIdeas(cuisine) {
           "difficulty": "Easy/Medium/Hard",
           "servings": "4",
           "ingredients": ["200g ingredient 1", "500ml ingredient 2"],
-          "instructions": ["step 1", "step 2"],
+          "instructions": ["step 1", "step 2"]
         }
       ]
     }`;
@@ -59,10 +57,7 @@ export async function generateRecipeIdeas(cuisine) {
     const response = await result.response;
     const text = response.text();
 
-    // Clean the response text
     let cleanedText = text.trim();
-
-    // Remove any markdown code block markers
     if (cleanedText.includes('```')) {
       cleanedText = cleanedText
         .replace(/```json\n?/g, '')
@@ -70,7 +65,6 @@ export async function generateRecipeIdeas(cuisine) {
         .trim();
     }
 
-    // Ensure the text starts with { and ends with }
     if (!cleanedText.startsWith('{') || !cleanedText.endsWith('}')) {
       throw new Error('Invalid JSON format in response');
     }
@@ -78,13 +72,12 @@ export async function generateRecipeIdeas(cuisine) {
     try {
       const parsedData = JSON.parse(cleanedText);
 
-      // Validate the parsed data structure
       if (!parsedData.recipes || !Array.isArray(parsedData.recipes)) {
         throw new Error('Missing recipes array in response');
       }
 
-      // Validate each recipe has required fields
-      parsedData.recipes.forEach((recipe, index) => {
+      // Validate each recipe
+      const validatedRecipes = parsedData.recipes.map((recipe) => {
         const requiredFields = [
           'id',
           'name',
@@ -95,18 +88,20 @@ export async function generateRecipeIdeas(cuisine) {
           'ingredients',
           'instructions',
         ];
-        const missingFields = requiredFields.filter((field) => !recipe[field]);
 
+        const missingFields = requiredFields.filter((field) => !recipe[field]);
         if (missingFields.length > 0) {
           throw new Error(
             `Recipe ${
-              index + 1
+              recipe.name
             } is missing required fields: ${missingFields.join(', ')}`
           );
         }
+
+        return recipe;
       });
 
-      return parsedData;
+      return { recipes: validatedRecipes };
     } catch (parseError) {
       console.error('Parse error:', parseError);
       console.error('Cleaned text:', cleanedText);

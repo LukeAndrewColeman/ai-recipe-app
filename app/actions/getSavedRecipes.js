@@ -9,6 +9,7 @@ export async function getSavedRecipes(userId) {
   try {
     const recipes = await database.listDocuments('smartrecipeai', 'recipes', [
       Query.equal('userId', userId),
+      Query.orderDesc('$createdAt'),
     ]);
     return recipes;
   } catch (error) {
