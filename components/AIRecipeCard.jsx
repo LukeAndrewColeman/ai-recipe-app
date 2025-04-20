@@ -1,11 +1,34 @@
 'use client';
 
 import { useState } from 'react';
+import { getFullRecipeDetails } from '@/app/actions/generateRecipeIdeas';
 import RecipeModal from './RecipeModal';
 import { motion } from 'motion/react';
 
-export default function AIRecipeCard({ recipe }) {
+export default function AIRecipeCard({ recipe, cuisine }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [fullRecipe, setFullRecipe] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleViewRecipe = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const details = await getFullRecipeDetails(
+        cuisine,
+        recipe.id,
+        recipe.name
+      );
+      setFullRecipe(details.recipe);
+      setIsModalOpen(true);
+    } catch (err) {
+      setError('Failed to load recipe details');
+      console.error('Error loading recipe details:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (!recipe || typeof recipe !== 'object') {
     console.error('Invalid recipe data:', recipe);
@@ -46,20 +69,33 @@ export default function AIRecipeCard({ recipe }) {
             whileHover={{ scale: 1.05, rotate: 2, origin: 'center' }}
           >
             <button
-              className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 text-neutral normal-case flex items-center justify-start gap-2 px-4 transition-all mt-4'
-              onClick={() => setIsModalOpen(true)}
+              className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40  normal-case flex items-center justify-start gap-2 px-4 transition-all mt-4 text-gray-800'
+              onClick={handleViewRecipe}
+              disabled={loading}
             >
-              View Recipe
+              {loading ? (
+                <>
+                  <span className='loading loading-spinner loading-sm text-gray-800'></span>
+                  Preparing recipe details...
+                </>
+              ) : (
+                'View Recipe'
+              )}
             </button>
           </motion.div>
+
+          {error && <p className='text-red-500 text-sm mt-2'>{error}</p>}
         </div>
       </div>
 
-      {isModalOpen && (
+      {isModalOpen && fullRecipe && (
         <RecipeModal
-          recipe={recipe}
+          recipe={fullRecipe}
           isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
+          onClose={() => {
+            setIsModalOpen(false);
+            setFullRecipe(null);
+          }}
         />
       )}
     </>

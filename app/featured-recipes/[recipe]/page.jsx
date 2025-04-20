@@ -60,13 +60,15 @@ const RecipePage = async ({ params }) => {
       <>
         <article>
           <header className='bg-gradient-to-r to-[#64CCCD] from-[#1B3C6F] text-center py-32'>
-            <h1 className='text-5xl font-bold text-white px-4 py-8 rounded-lg uppercase max-w-5xl mx-auto'>
-              {recipePost.title}
-            </h1>
-            <div
-              className='rich-text-content text-white'
-              dangerouslySetInnerHTML={{ __html: recipePost.description }}
-            />
+            <div className='max-w-5xl mx-auto'>
+              <h1 className='text-5xl font-bold text-white px-4 py-8 rounded-lg uppercase'>
+                {recipePost.title}
+              </h1>
+              <div
+                className='rich-text-content text-white'
+                dangerouslySetInnerHTML={{ __html: recipePost.description }}
+              />
+            </div>
           </header>
 
           <div className='container mx-auto px-4 py-8'>

@@ -1,19 +1,18 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import { generateRecipeIdeas } from '@/app/actions/generateRecipeIdeas';
+import { generateRecipePreviews } from '@/app/actions/generateRecipeIdeas';
 import AIRecipeCard from './AIRecipeCard';
 import LoadingRecipeCard from './LoadingRecipeCard';
 import { motion } from 'motion/react';
 
 export default function RecipeContent({ cuisine }) {
-  const [aiSuggestions, setAiSuggestions] = useState(null);
+  const [recipePreviews, setRecipePreviews] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [generationStep, setGenerationStep] = useState('');
   const [selectedCuisine, setSelectedCuisine] = useState(cuisine);
 
-  // Use ref to track if we've already fetched data for this cuisine
   const fetchedRef = useRef({});
 
   async function fetchData() {
@@ -22,19 +21,18 @@ export default function RecipeContent({ cuisine }) {
     setGenerationStep('Exploring cuisine...');
 
     try {
-      // Mark this cuisine as fetched at the start
       fetchedRef.current[cuisine] = true;
 
       setGenerationStep(
         'Hang tight, SmartRecipe AI is generating recipe ideas for you...'
       );
-      const aiData = await generateRecipeIdeas(cuisine);
+      const previewData = await generateRecipePreviews(cuisine);
 
-      if (!aiData?.recipes?.length) {
+      if (!previewData?.recipes?.length) {
         throw new Error('No recipes generated');
       }
 
-      setAiSuggestions(aiData);
+      setRecipePreviews(previewData);
       setGenerationStep('');
     } catch (e) {
       const errorMessage = e.message || 'Failed to generate recipes';
@@ -46,26 +44,24 @@ export default function RecipeContent({ cuisine }) {
   }
 
   useEffect(() => {
-    // Check if we've already fetched for this cuisine
     if (fetchedRef.current[cuisine]) {
       return;
     }
 
     setSelectedCuisine(cuisine);
-
     fetchData();
   }, [cuisine]);
 
   const handleRegenerate = () => {
-    setAiSuggestions(null);
+    setRecipePreviews(null);
     setError(null);
     setLoading(true);
-    fetchData(selectedCuisine);
+    fetchData();
   };
 
   const handleRetry = () => {
     fetchedRef.current[cuisine] = false;
-    setAiSuggestions(null);
+    setRecipePreviews(null);
     setError(null);
     setLoading(true);
     fetchData();
@@ -86,11 +82,15 @@ export default function RecipeContent({ cuisine }) {
               <LoadingRecipeCard />
             </div>
           </>
-        ) : aiSuggestions?.recipes ? (
+        ) : recipePreviews?.recipes ? (
           <>
             <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
-              {aiSuggestions.recipes.map((recipe, index) => (
-                <AIRecipeCard key={`${cuisine}-${index}`} recipe={recipe} />
+              {recipePreviews.recipes.map((recipe, index) => (
+                <AIRecipeCard
+                  key={`${cuisine}-${index}`}
+                  recipe={recipe}
+                  cuisine={cuisine}
+                />
               ))}
             </div>
           </>

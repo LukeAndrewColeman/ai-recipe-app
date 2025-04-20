@@ -11,7 +11,6 @@ export default function RecipeModal({ recipe, isOpen, onClose }) {
   const [isSaving, setIsSaving] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [saveStatus, setSaveStatus] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
   const { user } = useContext(AuthContext);
   const currentPath = usePathname();
 
@@ -22,14 +21,17 @@ export default function RecipeModal({ recipe, isOpen, onClose }) {
       setIsSaving(true);
 
       const recipeData = {
-        title: recipe.name || recipe.title,
+        title: recipe.name,
         description: recipe.description,
-        ingredients: JSON.stringify(recipe.ingredients),
-        instructions: JSON.stringify(recipe.instructions),
         cookingTime: recipe.cookingTime?.replace(' mins', '') || '0',
         servings: recipe.servings,
         difficulty: recipe.difficulty,
-        cuisine: recipe.cuisine,
+        ingredients: recipe.ingredients,
+        instructions: recipe.instructions,
+        tipsAndVariations: recipe.tipsAndVariations,
+        whyYoullLoveIt: recipe.whyYoullLoveIt,
+        storageInstructions: recipe.storageInstructions,
+        finalThoughts: recipe.finalThoughts,
         userId: user.$id,
       };
 
@@ -48,10 +50,14 @@ export default function RecipeModal({ recipe, isOpen, onClose }) {
       console.error('Error saving recipe:', error);
       setSaveStatus({
         success: false,
-        message: 'Failed to save recipe',
+        message: error.message || 'Failed to save recipe',
       });
     } finally {
       setIsSaving(false);
+
+      setTimeout(() => {
+        onClose();
+      }, 1500);
     }
   };
 
@@ -104,7 +110,7 @@ export default function RecipeModal({ recipe, isOpen, onClose }) {
               {recipe?.title || recipe?.name || 'Untitled Recipe'}
             </h2>
             <div className='flex items-center gap-4'>
-              {currentPath === '/recipebook' ? (
+              {currentPath === '/recipe-book' ? (
                 <motion.div
                   whileHover={{ scale: 1.05, rotate: 2, origin: 'center' }}
                 >
@@ -159,19 +165,17 @@ export default function RecipeModal({ recipe, isOpen, onClose }) {
         </div>
 
         {/* Modal Content */}
-        <div className='p-4 md:p-0 max-h-[70vh] overflow-y-auto bg-white shadow-lg border rounded-b-xl'>
+        <div className='p-4 md:p-6 max-h-[70vh] overflow-y-auto bg-white shadow-lg border rounded-b-xl'>
           {/* Description */}
-          <div className='p-2 md:p-6'>
+          <div className='mb-6'>
             <p className='text-gray-700 text-lg'>{recipe.description}</p>
           </div>
 
           {/* Quick Facts */}
-          <div className='flex flex-row gap-4 px-6'>
-            {(recipe.cookingTime || recipe.prepTime) && (
+          <div className='flex flex-wrap gap-4 mb-6'>
+            {recipe.cookingTime && (
               <div className='bg-primary/10 text-primary rounded-lg p-2 text-sm'>
-                <p>
-                  {recipe.cookingTime} {recipe.prepTime}
-                </p>
+                <p>{recipe.cookingTime}</p>
               </div>
             )}
             {recipe.difficulty && (
@@ -186,48 +190,75 @@ export default function RecipeModal({ recipe, isOpen, onClose }) {
             )}
           </div>
 
-          {/* Ingredients */}
-          <div className='bg-white rounded-lg p-2 md:p-6  '>
-            <h3 className='text-xl font-semibold mb-4'>Ingredients</h3>
-            <ul className='space-y-2'>
-              {recipe.ingredients ? (
-                (typeof recipe.ingredients === 'string'
-                  ? JSON.parse(recipe.ingredients)
-                  : recipe.ingredients
-                ).map((ingredient, index) => (
-                  <li
-                    key={index}
-                    className='flex items-center gap-2 text-gray-700'
-                  >
-                    <span className=''>•</span> {ingredient}
-                  </li>
-                ))
-              ) : (
-                <li className='text-gray-700'>No ingredients listed</li>
+          {/* Content */}
+          <div className='mb-6'>
+            <div className='space-y-6'>
+              {JSON.stringify(recipe.ingredients) && (
+                <div>
+                  <h3 className='text-xl font-semibold mb-2'>Ingredients</h3>
+                  <ul className='list-disc pl-5 space-y-1'>
+                    {recipe.ingredients.map((ingredient, index) => (
+                      <li key={index} className='text-gray-700'>
+                        {ingredient}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               )}
-            </ul>
-          </div>
 
-          {/* Instructions */}
-          <div className='bg-white rounded-lg p-2 md:p-6'>
-            <h3 className='text-xl font-semibold mb-4'>Instructions</h3>
-            <ol className='space-y-4'>
-              {recipe.instructions ? (
-                (typeof recipe.instructions === 'string'
-                  ? JSON.parse(recipe.instructions)
-                  : recipe.instructions
-                ).map((step, index) => (
-                  <li key={index} className='flex gap-4 text-gray-700'>
-                    <span className='font-bold min-w-[1.5rem]'>
-                      {index + 1}.
-                    </span>
-                    <span>{step}</span>
-                  </li>
-                ))
-              ) : (
-                <li className='text-gray-700'>No instructions available</li>
+              {JSON.stringify(recipe.instructions) && (
+                <div>
+                  <h3 className='text-xl font-semibold mb-2'>Instructions</h3>
+                  <ol className='list-decimal pl-5 space-y-2'>
+                    {recipe.instructions.map((instruction, index) => (
+                      <li key={index} className='text-gray-700'>
+                        {instruction}
+                      </li>
+                    ))}
+                  </ol>
+                </div>
               )}
-            </ol>
+
+              {JSON.stringify(recipe.tipsAndVariations) && (
+                <div>
+                  <h3 className='text-xl font-semibold mb-2'>
+                    Tips & Variations
+                  </h3>
+                  <ul className='list-disc pl-5 space-y-1'>
+                    {recipe.tipsAndVariations.map((tip, index) => (
+                      <li key={index} className='text-gray-700'>
+                        {tip}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {recipe.whyYoullLoveIt && (
+                <div>
+                  <h3 className='text-xl font-semibold mb-2'>
+                    Why You'll Love It
+                  </h3>
+                  <p className='text-gray-700'>{recipe.whyYoullLoveIt}</p>
+                </div>
+              )}
+
+              {recipe.storageInstructions && (
+                <div>
+                  <h3 className='text-xl font-semibold mb-2'>
+                    Storage Instructions
+                  </h3>
+                  <p className='text-gray-700'>{recipe.storageInstructions}</p>
+                </div>
+              )}
+
+              {recipe.finalThoughts && (
+                <div>
+                  <h3 className='text-xl font-semibold mb-2'>Final Thoughts</h3>
+                  <p className='text-gray-700'>{recipe.finalThoughts}</p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
