@@ -168,7 +168,7 @@ export default function RecipeModal({ recipe, isOpen, onClose }) {
         <div className='p-4 md:p-6 max-h-[70vh] overflow-y-auto bg-white shadow-lg border rounded-b-xl'>
           {/* Description */}
           <div className='mb-6'>
-            <p className='text-gray-700 text-lg'>{recipe.description}</p>
+            <p className='text-gray-700'>{recipe.description}</p>
           </div>
 
           {/* Quick Facts */}
