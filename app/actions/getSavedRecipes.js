@@ -12,7 +12,6 @@ export async function getSavedRecipes(userId) {
       Query.orderDesc('$createdAt'),
     ]);
 
-    console.log(recipes);
     return recipes;
   } catch (error) {
     console.error('Error fetching saved recipes:', error);

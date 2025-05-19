@@ -1,72 +1,29 @@
 'use client';
 
-import { useState, useContext } from 'react';
-import { saveRecipe } from '@/app/actions/saveRecipe';
-import { deleteRecipe } from '@/app/actions/deleteRecipe';
+import { useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { AuthContext } from '@/context/AuthContext';
 import { motion } from 'motion/react';
+import { useUser } from '@clerk/nextjs';
 
 export default function RecipeModal({ recipe, isOpen, onClose }) {
   const [isSaving, setIsSaving] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [saveStatus, setSaveStatus] = useState(null);
-  const { user } = useContext(AuthContext);
+  const { user } = useUser();
   const currentPath = usePathname();
 
   if (!isOpen) return null;
-
-  const handleSaveRecipe = async () => {
-    try {
-      setIsSaving(true);
-
-      const recipeData = {
-        title: recipe.name,
-        description: recipe.description,
-        cookingTime: recipe.cookingTime?.replace(' mins', '') || '0',
-        servings: recipe.servings,
-        difficulty: recipe.difficulty,
-        ingredients: recipe.ingredients,
-        instructions: recipe.instructions,
-        tipsAndVariations: recipe.tipsAndVariations,
-        whyYoullLoveIt: recipe.whyYoullLoveIt,
-        storageInstructions: recipe.storageInstructions,
-        finalThoughts: recipe.finalThoughts,
-        userId: user.$id,
-      };
-
-      const result = await saveRecipe(recipeData);
-
-      setSaveStatus({
-        success: result.success,
-        message: result.message,
-      });
-
-      // Clear status after 3 seconds
-      setTimeout(() => {
-        setSaveStatus(null);
-      }, 3000);
-    } catch (error) {
-      console.error('Error saving recipe:', error);
-      setSaveStatus({
-        success: false,
-        message: error.message || 'Failed to save recipe',
-      });
-    } finally {
-      setIsSaving(false);
-
-      setTimeout(() => {
-        onClose();
-      }, 1500);
-    }
-  };
 
   const handleDeleteRecipe = async () => {
     if (!recipe.$id) return;
 
     try {
       setIsDeleting(true);
-      const result = await deleteRecipe(recipe.$id);
+      const response = await fetch('/api/recipe', {
+        method: 'DELETE',
+        body: JSON.stringify({ id: recipe.$id }),
+      });
+      const result = await response.json();
 
       setSaveStatus({
         success: result.success,
@@ -93,14 +50,14 @@ export default function RecipeModal({ recipe, isOpen, onClose }) {
   return (
     <div className='fixed inset-0 bg-black/80 z-50 flex justify-center p-4 md:p-8 overflow-y-auto'>
       <div className='rounded-xl max-w-3xl w-full mb-8 backdrop-blur-xl'>
-        <div className='p-6 border-b bg-[#1B3C6F] text-white rounded-t-xl'>
+        <div className='p-6 border-b bg-primary text-white rounded-t-lg'>
           <div className='flex justify-end'>
             {saveStatus && (
               <span className='text-white'>{saveStatus.message}</span>
             )}
             <button
               onClick={onClose}
-              className='btn btn-circle btn-ghost text-white text-xl mb-1 ml-auto'
+              className='btn btn-circle btn-ghost text-xl mb-1 ml-auto'
             >
               ✕
             </button>
@@ -117,7 +74,7 @@ export default function RecipeModal({ recipe, isOpen, onClose }) {
                   <button
                     onClick={handleDeleteRecipe}
                     disabled={isDeleting}
-                    className='btn bg-red-500/20 border border-red-500/40 hover:border-red-500 hover:bg-red-500/40 normal-case flex items-center justify-center gap-2 px-4 transition-all text-white'
+                    className='btn bg-red-500/80 border border-red-500/40 hover:border-red-500 hover:bg-red-500/60 normal-case flex items-center justify-center gap-2 px-4 transition-all text-white'
                   >
                     {isDeleting ? (
                       <>

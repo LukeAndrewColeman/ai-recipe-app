@@ -1,5 +1,5 @@
 {
-  "name": "mood-recipe-generator",
+  "name": "smart-recipe-ai",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,14 +11,18 @@
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.7.4",
+    "@clerk/nextjs": "^6.18.3",
     "@google/generative-ai": "^0.21.0",
     "@prisma/client": "^6.1.0",
+    "@stripe/stripe-js": "^7.3.0",
     "appwrite": "^17.0.0",
     "bcrypt": "^5.1.1",
     "daisyui": "^4.12.14",
+    "lucide-react": "^0.510.0",
     "motion": "^12.6.2",
-    "next": "15.0.4",
+    "next": "^15.2.3",
     "next-auth": "^5.0.0-beta.25",
+    "node-appwrite": "^16.0.0",
     "node-fetch": "^3.3.2",
     "openai": "^4.76.0",
     "pocketbase": "^0.25.2",
@@ -26,6 +30,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-share": "^5.2.2",
+    "stripe": "^18.1.0",
     "unsplash-js": "^7.0.19"
   },
   "devDependencies": {

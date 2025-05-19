@@ -28,7 +28,7 @@ const StepCard = ({ step, index }) => (
 
 export default function HowItWorks({ steps }) {
   return (
-    <section className='py-12 px-4'>
+    <section className='pb-12 pt-8 px-4'>
       {/* Simple header */}
       <div className='text-center max-w-2xl mx-auto mb-12'>
         <h2 className='text-3xl font-semibold mb-4'>How It Works</h2>

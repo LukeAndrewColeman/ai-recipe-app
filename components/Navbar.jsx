@@ -1,32 +1,18 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { useContext, useState } from 'react';
-import { AuthContext } from '@/context/AuthContext';
+import { useState } from 'react';
 import { motion } from 'motion/react';
+import { SignOutButton, UserButton } from '@clerk/nextjs';
+import { useUser } from '@clerk/nextjs';
+import { CircleDollarSign } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Navbar() {
-  const router = useRouter();
-  const { user, loading, logout } = useContext(AuthContext);
+  const { user } = useUser();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
   const closeMenu = () => setIsMenuOpen(false);
-
-  const handleLogout = async () => {
-    try {
-      const result = await logout();
-      if (result.success) {
-        router.push('/auth/login');
-      } else {
-        console.error('Logout failed:', result.error);
-      }
-    } catch (error) {
-      console.error('Logout failed:', error);
-    }
-  };
 
   return (
     <motion.div
@@ -81,25 +67,29 @@ export default function Navbar() {
                 </Link>
               </li>
               <li>
-                <Link href='/featured-recipes' onClick={closeMenu}>
-                  Featured Recipes
+                <Link href='/blog' onClick={closeMenu}>
+                  Blog
                 </Link>
               </li>
               <li>
                 <div className='flex sm:hidden mt-2 border-t border-secondary/40 pt-2'>
                   {user ? (
-                    <button
-                      onClick={() => {
-                        closeMenu();
-                        handleLogout();
-                      }}
-                      className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-start gap-2 px-8 transition-all text-center'
-                    >
-                      Log Out
-                    </button>
+                    <div className='flex items-start gap-4 flex-col justify-start'>
+                      <UserButton>
+                        <UserButton.MenuItems>
+                          <UserButton.Link
+                            label='Credits'
+                            labelIcon={<CircleDollarSign className='w-4 h-4' />}
+                            href='/dashboard'
+                          />
+                          <UserButton.Action label='manageAccount' />
+                          <UserButton.Action label='signOut' />
+                        </UserButton.MenuItems>
+                      </UserButton>
+                    </div>
                   ) : (
                     <Link
-                      href='/auth/signup'
+                      href='/sign-up'
                       onClick={closeMenu}
                       className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-start gap-2 px-8 transition-all text-center'
                     >
@@ -111,6 +101,12 @@ export default function Navbar() {
             </ul>
           </div>
           <Link href='/' className='btn btn-ghost text-xl'>
+            <Image
+              src='/logo.jpg'
+              alt='SmartRecipe AI'
+              width={32}
+              height={32}
+            />
             SmartRecipe AI
           </Link>
         </div>
@@ -126,30 +122,32 @@ export default function Navbar() {
               <Link href='/recipe-book'>Recipe Book</Link>
             </li>
             <li>
-              <Link href='/featured-recipes'>Featured Recipes</Link>
+              <Link href='/blog'>Blog</Link>
             </li>
           </ul>
         </div>
         <div className='navbar-end hidden sm:flex'>
           {user ? (
-            <motion.div
-              className='origin-center inline-block'
-              whileHover={{ scale: 1.05, rotate: 2, origin: 'center' }}
-            >
-              <button
-                onClick={handleLogout}
-                className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-start gap-2 px-8 transition-all text-center'
-              >
-                Log Out
-              </button>
-            </motion.div>
+            <>
+              <UserButton>
+                <UserButton.MenuItems>
+                  <UserButton.Link
+                    label='Credits'
+                    labelIcon={<CircleDollarSign className='w-4 h-4' />}
+                    href='/dashboard'
+                  />
+                  <UserButton.Action label='manageAccount' />
+                  <UserButton.Action label='signOut' />
+                </UserButton.MenuItems>
+              </UserButton>
+            </>
           ) : (
             <motion.div
               className='origin-center inline-block'
               whileHover={{ scale: 1.05, rotate: 2, origin: 'center' }}
             >
               <Link
-                href='/auth/signup'
+                href='/sign-up'
                 className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-start gap-2 px-8 transition-all text-center'
               >
                 Register/Login

@@ -1,36 +1,34 @@
 import React from 'react';
-import getRecipe from '@/app/actions/getRecipe';
+import getPosts from '@/app/actions/getPosts';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import SocialShare from '@/components/SocialShare';
 
 // Generate dynamic metadata based on recipe data
 export async function generateMetadata({ params }) {
-  const { recipe } = params;
+  const { post } = params;
 
   try {
-    const recipeData = await getRecipe(recipe);
+    const postData = await getPosts(post);
 
     return {
-      title: `${recipeData.title} Recipe | SmartRecipe AI`,
-      description: recipeData.description.replace(/<[^>]*>/g, '').slice(0, 160),
+      title: `${postData.title} Recipe | SmartRecipe AI`,
+      description: postData.description.replace(/<[^>]*>/g, '').slice(0, 160),
       openGraph: {
-        title: recipeData.title,
-        description: recipeData.description
-          .replace(/<[^>]*>/g, '')
-          .slice(0, 160),
+        title: postData.title,
+        description: postData.description.replace(/<[^>]*>/g, '').slice(0, 160),
         type: 'article',
-        url: `https://smartrecipeai.com/featured-recipes/${recipe}`,
+        url: `https://smartrecipeai.com/blog/${post}`,
       },
 
       // Add JSON-LD Schema
       jsonLd: {
         '@context': 'https://schema.org',
         '@type': 'Recipe',
-        name: recipeData.title,
-        description: recipeData.description.replace(/<[^>]*>/g, ''),
-        cookTime: recipeData.cookTime,
-        recipeYield: recipeData.servings,
+        name: postData.title,
+        description: postData.description.replace(/<[^>]*>/g, ''),
+        cookTime: postData.cookTime,
+        recipeYield: postData.servings,
         recipeIngredient: [], // You would populate this from your data
         author: {
           '@type': 'Person',
@@ -50,23 +48,23 @@ export async function generateMetadata({ params }) {
 
 export const revalidate = 86400;
 
-const RecipePage = async ({ params }) => {
-  const { recipe } = params;
+const PostPage = async ({ params }) => {
+  const { post } = params;
 
   try {
-    const recipePost = await getRecipe(recipe);
+    const postData = await getPosts(post);
 
     return (
       <>
         <article>
-          <header className='bg-gradient-to-r to-[#64CCCD] from-[#1B3C6F] text-center py-32'>
+          <header className='bg-primary text-center py-32'>
             <div className='max-w-5xl mx-auto'>
               <h1 className='text-5xl font-bold text-white px-4 py-8 rounded-lg uppercase'>
-                {recipePost.title}
+                {postData.title}
               </h1>
               <div
                 className='rich-text-content text-white'
-                dangerouslySetInnerHTML={{ __html: recipePost.description }}
+                dangerouslySetInnerHTML={{ __html: postData.description }}
               />
             </div>
           </header>
@@ -74,19 +72,19 @@ const RecipePage = async ({ params }) => {
           <div className='container mx-auto px-4 py-8'>
             <section className='recipe-details flex flex-row gap-4'>
               <p className='bg-primary/10 text-primary rounded-lg p-2'>
-                {recipePost.difficulty}
+                {postData.difficulty}
               </p>
               <p className='bg-primary/10 text-primary rounded-lg p-2'>
-                {recipePost.cookTime}
+                {postData.cookTime}
               </p>
               <p className='bg-primary/10 text-primary rounded-lg p-2'>
-                <span className=''>Servings</span> {recipePost.servings}
+                <span className=''>Servings</span> {postData.servings}
               </p>
             </section>
 
             <section
               className='recipe-instructions rich-text-content max-w-5xl mt-8'
-              dangerouslySetInnerHTML={{ __html: recipePost.copy }}
+              dangerouslySetInnerHTML={{ __html: postData.copy }}
             />
             <p className='text-sm text-gray-500 mt-8 italic'>
               We cannot take responsibility for poorly cooked or unappetising
@@ -94,9 +92,7 @@ const RecipePage = async ({ params }) => {
               been tested in the real world.
             </p>
           </div>
-          <SocialShare
-            shareUrl={`https://smartrecipeai.com/featured-recipes/${recipe}`}
-          />
+          <SocialShare shareUrl={`https://smartrecipeai.com/blog/${post}`} />
         </article>
         <div className='bg-[#E1F5F5] py-12 mt-12 rounded-lg'>
           <div className='text-center'>
@@ -118,10 +114,10 @@ const RecipePage = async ({ params }) => {
       </>
     );
   } catch (error) {
-    console.error('Error fetching recipe:', error);
-    // If recipe not found or error occurs, show 404 page
+    console.error('Error fetching post:', error);
+    // If post not found or error occurs, show 404 page
     notFound();
   }
 };
 
-export default RecipePage;
+export default PostPage;

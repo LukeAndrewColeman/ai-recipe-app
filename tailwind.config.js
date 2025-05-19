@@ -9,15 +9,14 @@ module.exports = {
     themes: [
       {
         modernMoodTheme: {
-          primary: '#0f498b', // Teal Green
-          secondary: '#66CECF', // Golden Mustard
-          accent: '#F7B32B', // Berry Pink
-          neutral: '#2E2E38', // Gunmetal Gray
-          'base-100': '#feffff', // Soft White
-          info: '#4D96FF', // Azure Blue
-          success: '#20C997', // Teal Green
-          warning: '#F7B32B', // Golden Mustard
-          error: '#FF6F61', // Vivid Coral
+          primary: '#008080',
+          secondary: '#FF6F61',
+          neutral: '#2E2E38',
+          'base-100': '#feffff',
+          info: '#4D96FF',
+          success: '#20C997',
+          warning: '#F7B32B',
+          error: '#FF6F61',
         },
       },
     ],
@@ -27,6 +26,10 @@ module.exports = {
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
+      },
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
       },
     },
   },

@@ -1,5 +1,4 @@
 import { Client, Account, ID, Databases } from 'appwrite';
-
 // Initialize Appwrite client
 const client = new Client();
 

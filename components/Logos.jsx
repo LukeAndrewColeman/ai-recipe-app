@@ -7,7 +7,7 @@ const Logos = () => {
   return (
     <div className='text-center py-12'>
       {/* Heading */}
-      <h2 className='mb-8 text-gray-800'>Using the latest AI models from</h2>
+      <p className='mb-8 text-gray-600'>Using the latest AI models from</p>
 
       {/* Logos Container */}
       <div className='flex justify-center items-center gap-12'>
@@ -32,7 +32,7 @@ const Logos = () => {
         </div>
       </div>
       {/* Down Arrow */}
-      <div className='flex justify-center mt-12'>
+      <div className='flex justify-center mt-12 animate-bounce'>
         <svg
           className='w-8 h-8 text-gray-400'
           fill='none'

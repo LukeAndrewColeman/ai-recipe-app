@@ -1,13 +1,19 @@
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Poppins } from 'next/font/google';
+import { Poppins, Inter } from 'next/font/google';
 import { AuthProvider } from '@/context/AuthContext';
 import Script from 'next/script';
+import { ClerkProvider } from '@clerk/nextjs';
 
 const poppins = Poppins({
   subsets: ['latin'],
   weight: ['400', '500', '600'],
+  display: 'swap',
+});
+
+const inter = Inter({
+  subsets: ['latin'],
   display: 'swap',
 });
 
@@ -46,25 +52,27 @@ export const twitter = {
 
 export default async function RootLayout({ children }) {
   return (
-    <html lang='en' data-theme='moodRecipeTheme'>
-      <head>
-        {process.env.ENVIRONMENT !== 'development' && (
-          <Script
-            defer
-            src='https://umami.lukeacoleman.com/script.js'
-            data-website-id='b68da7d8-50fa-4554-b173-9f758412c732'
-          />
-        )}
-      </head>
-      <AuthProvider>
-        <body
-          className={`min-h-screen flex flex-col text-neutral ${poppins.className}`}
-        >
-          <Navbar />
-          <main className='flex-grow'>{children}</main>
-          <Footer />
-        </body>
-      </AuthProvider>
-    </html>
+    <ClerkProvider>
+      <html lang='en' data-theme='moodRecipeTheme' suppressHydrationWarning>
+        <head>
+          {process.env.ENVIRONMENT !== 'development' && (
+            <Script
+              defer
+              src='https://umami.lukeacoleman.com/script.js'
+              data-website-id='b68da7d8-50fa-4554-b173-9f758412c732'
+            />
+          )}
+        </head>
+        <AuthProvider>
+          <body
+            className={`min-h-screen flex flex-col text-neutral ${inter.className}`}
+          >
+            <Navbar />
+            <main className='flex-grow'>{children}</main>
+            <Footer />
+          </body>
+        </AuthProvider>
+      </html>
+    </ClerkProvider>
   );
 }

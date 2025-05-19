@@ -2,7 +2,7 @@ import PocketBase from 'pocketbase';
 
 const pb = new PocketBase('https://pocketbase.lukeacoleman.com');
 
-const getRecipe = async (slug) => {
+const getPosts = async (slug) => {
   let lastError;
 
   for (let attempt = 0; attempt < 3; attempt++) {
@@ -24,4 +24,4 @@ const getRecipe = async (slug) => {
   return null;
 };
 
-export default getRecipe;
+export default getPosts;
