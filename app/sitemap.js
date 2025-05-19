@@ -7,7 +7,7 @@ export default async function sitemap() {
   const recipes = await getRecipes();
 
   const recipePosts = recipes.map((recipe) => ({
-    url: `${baseUrl}/featured-recipes/${recipe.slug}`,
+    url: `${baseUrl}/blog/${recipe.slug}`,
     lastModified: new Date(),
     changeFrequency: 'weekly',
     priority: 0.5,
@@ -35,7 +35,7 @@ export default async function sitemap() {
       priority: 0.5,
     },
     {
-      url: `${baseUrl}/featured-recipes`,
+      url: `${baseUrl}/blog`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.5,
