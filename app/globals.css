@@ -23,19 +23,19 @@
 
 @layer components {
   .rich-text-content h1 {
-    @apply text-5xl font-bold mb-6;
+    @apply text-3xl font-bold mb-6;
   }
 
   .rich-text-content h2 {
-    @apply text-4xl font-bold mb-4;
-  }
-
-  .rich-text-content h3 {
     @apply text-2xl font-bold mb-4;
   }
 
+  .rich-text-content h3 {
+    @apply text-xl font-bold mb-4;
+  }
+
   .rich-text-content h4 {
-    @apply text-xl font-bold mb-3;
+    @apply text-lg font-bold mb-3;
   }
 
   .rich-text-content h5 {

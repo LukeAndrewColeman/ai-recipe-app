@@ -12,7 +12,7 @@ export async function generateMetadata({ params }) {
     const postData = await getPosts(post);
 
     return {
-      title: `${postData.title} Recipe | SmartRecipe AI`,
+      title: `${postData.title} | SmartRecipe AI`,
       description: postData.description.replace(/<[^>]*>/g, '').slice(0, 160),
       openGraph: {
         title: postData.title,
@@ -40,8 +40,9 @@ export async function generateMetadata({ params }) {
     console.error('Error generating metadata:', error);
     // Return default metadata if we can't fetch the recipe
     return {
-      title: 'Recipe | SmartRecipe Ai',
-      description: 'Discover delicious recipes at SmartRecipe Ai',
+      title: 'Blog | SmartRecipe Ai',
+      description:
+        'Discover delicious recipes and cooking inspiration at SmartRecipe Ai',
     };
   }
 }
@@ -71,15 +72,21 @@ const PostPage = async ({ params }) => {
 
           <div className='container mx-auto px-4 py-8'>
             <section className='recipe-details flex flex-row gap-4'>
-              <p className='bg-primary/10 text-primary rounded-lg p-2'>
-                {postData.difficulty}
-              </p>
-              <p className='bg-primary/10 text-primary rounded-lg p-2'>
-                {postData.cookTime}
-              </p>
-              <p className='bg-primary/10 text-primary rounded-lg p-2'>
-                <span className=''>Servings</span> {postData.servings}
-              </p>
+              {postData.difficulty && (
+                <p className='bg-primary/10 text-primary rounded-lg p-2'>
+                  {postData.difficulty}
+                </p>
+              )}
+              {postData.cookTime && (
+                <p className='bg-primary/10 text-primary rounded-lg p-2'>
+                  {postData.cookTime}
+                </p>
+              )}
+              {postData.servings && (
+                <p className='bg-primary/10 text-primary rounded-lg p-2'>
+                  <span className=''>Servings</span> {postData.servings}
+                </p>
+              )}
             </section>
 
             <section
@@ -94,18 +101,18 @@ const PostPage = async ({ params }) => {
           </div>
           <SocialShare shareUrl={`https://smartrecipeai.com/blog/${post}`} />
         </article>
-        <div className='bg-[#E1F5F5] py-12 mt-12 rounded-lg'>
+        <div className='bg-primary/60 py-12 mt-12 rounded-lg text-white'>
           <div className='text-center'>
             <h2 className='text-2xl font-bold mb-4'>
               Want to Create Your Own Recipe?
             </h2>
-            <p className='text-base-content/70 mb-6 max-w-xl mx-auto'>
+            <p className='text-white mb-6 max-w-xl mx-auto'>
               Try our AI-powered recipe generator to create unique dishes
               tailored to your preferences.
             </p>
             <Link
               href='/recipe-generator'
-              className='btn bg-primary hover:bg-primary/90 text-white normal-case px-8'
+              className='btn bg-white hover:bg-white/90 normal-case px-8 min-w-[200px]'
             >
               Generate a Recipe →
             </Link>

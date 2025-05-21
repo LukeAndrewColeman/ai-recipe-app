@@ -57,14 +57,6 @@ const FeaturedRecipes = async () => {
                     className='mb-4'
                     dangerouslySetInnerHTML={{ __html: recipe.description }}
                   ></p>
-                  <div className='flex gap-2 mt-2 mb-4'>
-                    <div className='bg-gray-500/10 text-gray-500 rounded-lg p-2 w-fit text-sm'>
-                      <p>{recipe.cookTime}</p>
-                    </div>
-                    <div className='bg-gray-500/10 text-gray-500 rounded-lg p-2 w-fit text-sm'>
-                      <p>{recipe.difficulty}</p>
-                    </div>
-                  </div>
                   <div className='origin-center w-fit'>
                     <Link
                       href={`/blog/${recipe.slug}`}

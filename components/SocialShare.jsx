@@ -22,20 +22,20 @@ const SocialShare = ({ shareUrl }) => {
     : `https://${shareUrl}`;
 
   // Add title and description for better sharing
-  const shareTitle = 'Check out this delicious recipe!';
+  const shareTitle = 'Check out this post!';
   const shareDescription =
-    'I found this amazing recipe I thought you might like.';
+    'I found this amazing post I thought you might like.';
 
   return (
     <div className='container mx-auto px-4'>
       <p className='text-gray-800 font-bold mb-4'>
-        If you liked this recipe, please share it with your friends!
+        If you liked this post, please share it with your friends!
       </p>
       <div className='flex gap-4'>
         <FacebookShareButton
           url={formattedUrl}
           quote={shareTitle}
-          hashtag='#recipe'
+          hashtag='#post'
         >
           <FacebookIcon size={32} round />
         </FacebookShareButton>
@@ -48,7 +48,7 @@ const SocialShare = ({ shareUrl }) => {
         <TwitterShareButton
           url={formattedUrl}
           title={shareTitle}
-          hashtags={['recipe', 'cooking']}
+          hashtags={['post', 'blog']}
         >
           <TwitterIcon size={32} round />
         </TwitterShareButton>
