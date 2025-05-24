@@ -51,21 +51,25 @@ const FeaturedRecipes = async () => {
                 key={`recipe-${index}`}
                 className='card bg-base-100 shadow-xl cursor-pointer hover:shadow-2xl transition-shadow max-w-[600px]'
               >
-                <div className='card-body'>
-                  <h2 className='card-title'>{recipe.title || recipe.name}</h2>
-                  <p
-                    className='mb-4'
-                    dangerouslySetInnerHTML={{ __html: recipe.description }}
-                  ></p>
-                  <div className='origin-center w-fit'>
-                    <Link
-                      href={`/blog/${recipe.slug}`}
-                      className='mt-6 text-primary/90 hover:text-primary/70 font-bold'
-                    >
-                      View Recipe →
-                    </Link>
+                <Link href={`/blog/${recipe.slug}`}>
+                  <div className='card-body'>
+                    <h2 className='card-title'>
+                      {recipe.title || recipe.name}
+                    </h2>
+                    <p
+                      className='mb-4'
+                      dangerouslySetInnerHTML={{ __html: recipe.description }}
+                    ></p>
+                    <div className='origin-center w-fit'>
+                      <Link
+                        href={`/blog/${recipe.slug}`}
+                        className='mt-6 text-primary/90 hover:text-primary/70 font-bold'
+                      >
+                        View Recipe →
+                      </Link>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </div>
             ))}
           </div>

@@ -8,9 +8,9 @@ const Footer = () => {
         <div className='mb-4 md:mb-0 max-w-xs text-center md:text-left'>
           <p className='font-bold text-lg mb-1'>About Us</p>
           <p className='text-sm'>
-            SmartRecipe AI helps busy parents and young professionals create
-            healthy, delicious meals using AI-powered recipe generation. Save
-            time, reduce food waste, and discover new favorites!
+            SmartRecipe AI helps busy people create healthy, delicious meals
+            using AI-powered recipe generation. Save time, reduce food waste,
+            and discover new favorites!
           </p>
         </div>
 

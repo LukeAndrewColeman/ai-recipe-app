@@ -64,7 +64,7 @@ const PostPage = async ({ params }) => {
                 {postData.title}
               </h1>
               <div
-                className='rich-text-content text-white'
+                className='rich-text-content text-white px-4'
                 dangerouslySetInnerHTML={{ __html: postData.description }}
               />
             </div>

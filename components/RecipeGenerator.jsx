@@ -162,7 +162,7 @@ export default function RecipeGenerator() {
         </p>
 
         {/* Custom Ingredient Input */}
-        <div className='max-w-md mx-auto mb-8'>
+        <div className='max-w-xl mx-auto mb-8'>
           <form onSubmit={handleCustomIngredientSubmit} className='flex gap-2'>
             <input
               type='text'
@@ -173,9 +173,9 @@ export default function RecipeGenerator() {
             />
             <button
               type='submit'
-              className='btn bg-primary text-white normal-case'
+              className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 text-neutral normal-case flex items-center justify-start gap-2 px-4 transition-all'
             >
-              Add
+              Add Ingredient
             </button>
           </form>
         </div>

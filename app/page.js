@@ -13,7 +13,8 @@ export default function Home() {
   const steps = [
     {
       title: 'Choose Your Ingredients',
-      description: 'Select from our diverse range of ingredients',
+      description:
+        'Select from our diverse range of ingredients or input your own',
       gradient: 'from-purple-500 to-pink-400',
     },
     {
@@ -38,8 +39,9 @@ export default function Home() {
               Smarter meals, fewer decisions, dinner on autopilot
             </h1>
             <h2 className='text-lg md:text-xl font-medium mb-4 max-w-5xl mx-auto'>
-              SmartRecipe AI helps busy parents and professionals cook fast,
-              healthy meals—using what you already have, without the stress.
+              Transform your kitchen adventures with AI-powered recipe magic!
+              Create delicious meals from your available ingredients, making
+              cooking fun and effortless.
             </h2>
             <motion.div
               className='origin-center inline-block'
