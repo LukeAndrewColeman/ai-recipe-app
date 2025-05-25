@@ -72,7 +72,7 @@
   }
 
   .rich-text-content a {
-    @apply text-[#E1F5F5] hover:text-[#E1F5F5]/90 underline transition-colors;
+    @apply text-[#008080] hover:text-[#008080]/60 underline transition-colors;
   }
 
   .rich-text-content blockquote {

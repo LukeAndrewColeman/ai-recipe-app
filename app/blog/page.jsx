@@ -57,10 +57,17 @@ const FeaturedRecipes = async () => {
                       {recipe.title || recipe.name}
                     </h2>
                     <p
-                      className='mb-4'
+                      className='mb-2'
                       dangerouslySetInnerHTML={{ __html: recipe.description }}
                     ></p>
                     <div className='origin-center w-fit'>
+                      <p className='text-secondary mb-4 px-2 py-2 bg-gray-100 rounded-xl'>
+                        {new Date(recipe.created).toLocaleDateString('en-GB', {
+                          day: 'numeric',
+                          month: 'long',
+                          year: 'numeric',
+                        })}
+                      </p>
                       <Link
                         href={`/blog/${recipe.slug}`}
                         className='mt-6 text-primary/90 hover:text-primary/70 font-bold'
