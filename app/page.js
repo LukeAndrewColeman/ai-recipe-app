@@ -166,7 +166,7 @@ export default function Home() {
       </div>
 
       {/* Recipe Book Section */}
-      <div className='bg-primary/60 py-20 text-white'>
+      {/* <div className='bg-primary/60 py-20 text-white'>
         <div className='flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto px-6 gap-12'>
           <div className='flex-1'>
             <h2 className='text-3xl font-bold mb-4'>
@@ -209,91 +209,103 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
-      {/* Featured Recipes Section */}
-      {/* <div className='pt-20 relative overflow-hidden'>
-        <div className='max-w-6xl mx-auto px-6 relative'>
-          <div className='text-center mb-10'>
+      {/* Reviews Section */}
+      <div className='py-20 bg-base-100'>
+        <div className='max-w-6xl mx-auto px-6'>
+          <div className='text-center mb-12'>
             <span className='inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4'>
-              Community Favorites
+              What Our Users Say
             </span>
             <h2 className='text-3xl md:text-4xl font-bold mb-4'>
-              Featured Recipes
+              Loved by Home Cooks
             </h2>
-            <p className='text-base-content/70 leading-relaxed max-w-2xl mx-auto'>
-              Explore our collection of popular AI-generated recipes. These
-              featured dishes have been enjoyed by our community and showcase
-              the diversity of cuisines our AI can create.
+            <p className='text-base-content/70 leading-relaxed max-w-xl mx-auto'>
+              Join our happy cooks who have transformed their kitchen experience
+              with SmartRecipe AI.
             </p>
           </div>
 
-          <div className='grid grid-cols-1 md:grid-cols-3 gap-6 mb-12'>
+          <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
+            {/* Review 1 */}
             <motion.div
-              className='p-6 rounded-xl bg-base-100 border border-base-200 shadow-sm hover:shadow-md transition-all duration-300'
+              className='bg-white p-6 rounded-xl shadow-lg border border-primary/10'
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               whileHover={{ y: -5 }}
             >
-              <div className='text-4xl mb-3'>🍝</div>
-              <h3 className='text-xl font-semibold mb-2'>Italian Classics</h3>
-              <p className='text-base-content/70'>
-                Authentic pasta dishes, creamy risottos, and traditional Italian
-                desserts.
+              <p className='text-gray-600 mb-4'>
+                "This app has completely changed how I cook! The AI-generated
+                recipes are creative and delicious. I've discovered so many new
+                dishes I never would have tried otherwise."
               </p>
+              <div className='flex items-center'>
+                <div className='w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold mr-3'>
+                  S
+                </div>
+                <div>
+                  <p className='font-semibold'>Sarah M.</p>
+                  <p className='text-sm text-gray-500'>Home Cook</p>
+                </div>
+              </div>
             </motion.div>
 
+            {/* Review 2 */}
             <motion.div
-              className='p-6 rounded-xl bg-base-100 border border-base-200 shadow-sm hover:shadow-md transition-all duration-300'
+              className='bg-white p-6 rounded-xl shadow-lg border border-primary/10'
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               whileHover={{ y: -5 }}
             >
-              <div className='text-4xl mb-3'>🌮</div>
-              <h3 className='text-xl font-semibold mb-2'>Mexican Favorites</h3>
-              <p className='text-base-content/70'>
-                Spicy tacos, hearty enchiladas, and refreshing Mexican
-                beverages.
+              <p className='text-gray-600 mb-4'>
+                "As a busy parent, this app has been a lifesaver. I can quickly
+                find recipes based on what's in my fridge, and the instructions
+                are always clear and easy to follow."
               </p>
+              <div className='flex items-center'>
+                <div className='w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold mr-3'>
+                  M
+                </div>
+                <div>
+                  <p className='font-semibold'>Michael T.</p>
+                  <p className='text-sm text-gray-500'>
+                    Parent & Food Enthusiast
+                  </p>
+                </div>
+              </div>
             </motion.div>
 
+            {/* Review 3 */}
             <motion.div
-              className='p-6 rounded-xl bg-base-100 border border-base-200 shadow-sm hover:shadow-md transition-all duration-300'
+              className='bg-white p-6 rounded-xl shadow-lg border border-primary/10'
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
               whileHover={{ y: -5 }}
             >
-              <div className='text-4xl mb-3'>🍜</div>
-              <h3 className='text-xl font-semibold mb-2'>Asian Delights</h3>
-              <p className='text-base-content/70'>
-                Flavorful stir-fries, steaming noodle soups, and delicate dim
-                sum.
+              <p className='text-gray-600 mb-4'>
+                "The recipe suggestions are incredibly creative! I love how it
+                helps me use ingredients I already have and introduces me to new
+                flavor combinations."
               </p>
-            </motion.div>
-          </div>
-
-          <div className='flex justify-center'>
-            <motion.div
-              className='origin-center inline-block'
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              whileHover={{ scale: 1.05, rotate: 1.5, origin: 'center' }}
-            >
-              <Link
-                href='/featured-recipes'
-                className='btn bg-primary hover:bg-primary/90 text-white normal-case px-8'
-              >
-                Discover All Featured Recipes →
-              </Link>
+              <div className='flex items-center'>
+                <div className='w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold mr-3'>
+                  L
+                </div>
+                <div>
+                  <p className='font-semibold'>Lisa K.</p>
+                  <p className='text-sm text-gray-500'>Culinary Explorer</p>
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>
-      </div> */}
+      </div>
 
+      {/* Final CTA Section */}
       <div className='flex flex-col items-center text-center max-w-3xl mx-auto my-20 px-6'>
         <h2 className='text-3xl font-bold mb-4'>
           Turn your ingredients into delicious recipes

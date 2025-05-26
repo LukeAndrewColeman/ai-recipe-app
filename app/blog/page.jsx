@@ -72,7 +72,7 @@ const FeaturedRecipes = async () => {
                         href={`/blog/${recipe.slug}`}
                         className='mt-6 text-primary/90 hover:text-primary/70 font-bold'
                       >
-                        View Recipe →
+                        View Post →
                       </Link>
                     </div>
                   </div>
