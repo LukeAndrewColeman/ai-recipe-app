@@ -29,6 +29,33 @@ export default function Home() {
     },
   ];
 
+  const pricingPlans = [
+    {
+      name: 'Free',
+      credits: 20,
+      price: 0,
+      features: [
+        '20 free credits monthly',
+        'Save unlimited recipes',
+        'Basic email support',
+        'Access to all features',
+      ],
+      popular: true,
+    },
+    {
+      name: 'Buy Credits',
+      credits: 'As needed',
+      price: 'From £2.99',
+      features: [
+        'Purchase credits when needed',
+        'No subscription required',
+        'Credits never expire',
+        'Flexible usage',
+      ],
+      popular: false,
+    },
+  ];
+
   return (
     <>
       <NavCta />
@@ -301,6 +328,106 @@ export default function Home() {
                 </div>
               </div>
             </motion.div>
+          </div>
+        </div>
+      </div>
+
+      {/* Pricing Section */}
+      <div className='py-20 bg-gradient-to-b from-base-100 to-base-200'>
+        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+          <div className='text-center mb-12'>
+            <span className='inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4'>
+              Simple Pricing
+            </span>
+            <h2 className='text-3xl md:text-4xl font-bold mb-4'>
+              Start Cooking for Free
+            </h2>
+            <p className='text-base-content/70 leading-relaxed max-w-xl mx-auto'>
+              Get started with 20 free credits monthly. Need more? Purchase
+              additional credits whenever you need them.
+            </p>
+          </div>
+
+          <div className='flex flex-wrap gap-8 max-w-7xl mx-auto justify-center'>
+            {pricingPlans.map((plan) => (
+              <div
+                key={plan.name}
+                className={`relative rounded-xl p-8 min-w-[350px] ${
+                  plan.popular
+                    ? 'bg-primary/90 text-white shadow-xl scale-105'
+                    : 'bg-base-100 text-neutral shadow-lg'
+                }`}
+              >
+                {plan.popular && (
+                  <div className='absolute -top-4 left-1/2 transform -translate-x-1/2'>
+                    <span className='bg-secondary text-black px-6 py-3 rounded-full text-sm font-semibold uppercase shadow-lg'>
+                      Most Popular
+                    </span>
+                  </div>
+                )}
+
+                <div className='text-center'>
+                  <h2 className='text-2xl font-bold mb-2'>{plan.name}</h2>
+                  <div className='mb-6'>
+                    <span className='text-3xl font-bold'>
+                      {plan.price === 0 ? 'Free' : plan.price}
+                    </span>
+                    {plan.price !== 0 && (
+                      <span className='text-lg opacity-80'>/one-time</span>
+                    )}
+                  </div>
+                  <div className='mb-6'>
+                    <span className='text-2xl font-semibold'>
+                      {plan.credits}
+                    </span>
+                    <span className='text-lg opacity-80'> credits</span>
+                  </div>
+                </div>
+
+                <ul className='space-y-4 mb-8'>
+                  {plan.features.map((feature) => (
+                    <li key={feature} className='flex items-center'>
+                      <svg
+                        className={`h-5 w-5 mr-3 ${
+                          plan.popular ? 'text-white' : 'text-primary'
+                        }`}
+                        fill='none'
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth='2'
+                        viewBox='0 0 24 24'
+                        stroke='currentColor'
+                      >
+                        <path d='M5 13l4 4L19 7'></path>
+                      </svg>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <div className='flex justify-center'>
+                  <Link
+                    href={
+                      plan.name === 'Buy Credits'
+                        ? '/buy-credits'
+                        : user
+                        ? '/recipe-generator'
+                        : '/sign-up'
+                    }
+                    className={`btn normal-case flex items-center justify-start gap-2 px-4 transition-all mt-8 ${
+                      plan.popular
+                        ? 'bg-secondary border border-secondary/40 hover:border-secondary hover:bg-secondary/40 text-neutral'
+                        : 'bg-primary/20 border border-primary/40 hover:border-primary hover:bg-primary/40 text-neutral'
+                    }`}
+                  >
+                    {plan.name === 'Buy Credits'
+                      ? 'View Pricing'
+                      : user
+                      ? 'Get Started'
+                      : 'Sign Up Now'}
+                  </Link>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
