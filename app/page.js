@@ -31,7 +31,7 @@ export default function Home() {
 
   const pricingPlans = [
     {
-      name: 'Free',
+      name: 'Free Forever',
       credits: 20,
       price: 0,
       features: [
@@ -39,18 +39,6 @@ export default function Home() {
         'Save unlimited recipes',
         'Basic email support',
         'Access to all features',
-      ],
-      popular: true,
-    },
-    {
-      name: 'Buy Credits',
-      credits: 'As needed',
-      price: 'From £2.99',
-      features: [
-        'Purchase credits when needed',
-        'No subscription required',
-        'Credits never expire',
-        'Flexible usage',
       ],
       popular: false,
     },
@@ -343,8 +331,8 @@ export default function Home() {
               Start Cooking for Free
             </h2>
             <p className='text-base-content/70 leading-relaxed max-w-xl mx-auto'>
-              Get started with 20 free credits monthly. Need more? Purchase
-              additional credits whenever you need them.
+              Get started with 20 free credits every month. No credit card
+              required.
             </p>
           </div>
 
@@ -422,10 +410,13 @@ export default function Home() {
                     {plan.name === 'Buy Credits'
                       ? 'View Pricing'
                       : user
-                      ? 'Get Started'
-                      : 'Sign Up Now'}
+                      ? 'Sign Up for Free →'
+                      : 'Sign Up for Free →'}
                   </Link>
                 </div>
+                <p className='text-sm text-gray-500 text-center mt-4'>
+                  No credit card required
+                </p>
               </div>
             ))}
           </div>
@@ -433,7 +424,7 @@ export default function Home() {
       </div>
 
       {/* Final CTA Section */}
-      <div className='flex flex-col items-center text-center max-w-3xl mx-auto my-20 px-6'>
+      {/* <div className='flex flex-col items-center text-center max-w-3xl mx-auto my-20 px-6'>
         <h2 className='text-3xl font-bold mb-4'>
           Turn your ingredients into delicious recipes
         </h2>
@@ -455,7 +446,7 @@ export default function Home() {
             Start Cooking Smarter →
           </Link>
         </motion.div>
-      </div>
+      </div> */}
     </>
   );
 }
