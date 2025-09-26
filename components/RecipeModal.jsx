@@ -50,7 +50,7 @@ export default function RecipeModal({ recipe, isOpen, onClose }) {
   return (
     <div className='fixed inset-0 bg-black/80 z-50 flex justify-center p-4 md:p-8 overflow-y-auto'>
       <div className='rounded-xl max-w-3xl w-full mb-8 backdrop-blur-xl'>
-        <div className='p-6 border-b bg-primary text-white rounded-t-lg'>
+        <div className='p-6 border-b bg-secondary rounded-t-lg'>
           <div className='flex justify-end'>
             {saveStatus && (
               <span className='text-white'>{saveStatus.message}</span>

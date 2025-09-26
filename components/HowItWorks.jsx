@@ -13,8 +13,8 @@ const StepCard = ({ step, index }) => (
     {/* Simple numbered indicator */}
     <div className='flex items-center mb-4'>
       <span
-        className='w-8 h-8 rounded-full bg-primary/10 flex items-center
-                     justify-center text-primary font-semibold mr-3'
+        className='w-8 h-8 rounded-full bg-secondary/10 flex items-center
+                     justify-center text-secondary font-semibold mr-3'
       >
         {index + 1}
       </span>
@@ -28,7 +28,7 @@ const StepCard = ({ step, index }) => (
 
 export default function HowItWorks({ steps }) {
   return (
-    <section className='pb-12 pt-8 px-4'>
+    <section className='pb-20 pt-8 px-4'>
       {/* Simple header */}
       <div className='text-center max-w-2xl mx-auto mb-12'>
         <h2 className='text-3xl font-semibold mb-4'>How It Works</h2>

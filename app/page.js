@@ -47,9 +47,14 @@ export default function Home() {
   return (
     <>
       <NavCta />
-      <div className=''>
-        <div className='container mx-auto px-4 max-w-6xl z-20 flex md:flex-row flex-col items-center justify-center overflow-hidden gap-8'>
-          <div className='w-full md:w-1/2 p-4'>
+      <div className='bg-gradient-to-t from-primary to-secondary/90 relative overflow-hidden'>
+        {/* Subtle noise texture overlay */}
+        <div className='absolute inset-0 opacity-30 z-10' style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.4'/%3E%3C/svg%3E")`
+        }}></div>
+
+        <div className='container mx-auto text-center text-[#333333] py-[70px] md:py-[170px] px-4 max-w-4xl z-20 flex md:flex-row flex-col items-center justify-center overflow-hidden gap-8 relative z-20'>
+          <div className='w-full p-4'>
             <h1 className='text-2xl md:text-5xl font-bold mb-6 capitalize'>
               Smarter meals, fewer decisions, dinner on autopilot
             </h1>
@@ -67,20 +72,11 @@ export default function Home() {
             >
               <Link
                 href='/recipe-generator'
-                className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 text-neutral normal-case flex items-center justify-start gap-2 px-4 transition-all mt-8'
+                className='btn bg-secondary/80 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 text-neutral normal-case flex items-center justify-start gap-2 px-4 transition-all mt-8'
               >
-                Sign Up for Free →
+                Generate a Recipe →
               </Link>
             </motion.div>
-          </div>
-          <div className='w-full md:mb-0 md:w-1/2 max-h-[300px] md:max-h-[600px] order-first md:order-last overflow-hidden'>
-            <Image
-              src='/hero-image-two.jpg'
-              alt='Hero Image'
-              width={500}
-              height={300}
-              className='object-cover h-full w-full object-bottom'
-            />
           </div>
         </div>
       </div>
@@ -90,7 +86,7 @@ export default function Home() {
       <HowItWorks steps={steps} />
 
       {/* Split Authentication CTA Section */}
-      <div className='grid grid-cols-1 md:grid-cols-2 min-h-[400px]'>
+      <div className='grid grid-cols-1 md:grid-cols-2 min-h-[500px]'>
         {/* Register Block */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -99,13 +95,13 @@ export default function Home() {
           className='bg-primary p-12 flex flex-col items-center justify-center text-center relative overflow-hidden'
         >
           <div className='relative z-10'>
-            <h2 className='text-2xl md:text-3xl font-bold text-white mb-4'>
+            <h2 className='text-2xl md:text-3xl font-bold mb-4'>
               Start Your Journey Today
             </h2>
-            <p className='text-white mb-6 max-w-sm mx-auto'>
+            <p className='mb-6 max-w-sm mx-auto'>
               Create your free account and unlock:
             </p>
-            <ul className='text-white mb-8 space-y-2'>
+            <ul className='mb-8 space-y-2'>
               <li>✓ Save unlimited favorite recipes</li>
               <li>✓ Join our cooking community</li>
               <li>✓ 20 free credits per month</li>
@@ -121,7 +117,7 @@ export default function Home() {
             >
               <Link
                 href={user ? '/recipe-generator' : '/sign-up'}
-                className='btn bg-white hover:bg-white/90 normal-case px-8 min-w-[200px]'
+                className='btn border-secondary bg-secondary/80 hover:bg-secondary/40 normal-case px-8 min-w-[200px]'
               >
                 Sign Up for Free →
               </Link>
@@ -137,10 +133,10 @@ export default function Home() {
           className='bg-primary/60 p-12 flex flex-col items-center justify-center text-center relative overflow-hidden'
         >
           <div className='relative z-10'>
-            <h2 className='text-2xl md:text-3xl font-bold text-white mb-4'>
+            <h2 className='text-2xl md:text-3xl font-bold mb-4'>
               Welcome Back
             </h2>
-            <p className='text-white mb-6 max-w-sm mx-auto'>
+            <p className='mb-6 max-w-sm mx-auto'>
               Access your saved recipes and continue your culinary journey
             </p>
             <motion.div
@@ -152,7 +148,7 @@ export default function Home() {
             >
               <Link
                 href={user ? '/recipe-generator' : '/sign-in'}
-                className='btn bg-white hover:bg-white/90 normal-case px-8 min-w-[200px]'
+                className='btn bg-secondary hover:bg-secondary/40 border-secondary normal-case px-8 min-w-[200px]'
               >
                 Log In →
               </Link>
@@ -227,7 +223,7 @@ export default function Home() {
       </div> */}
 
       {/* Reviews Section */}
-      <div className='py-20 bg-base-100'>
+      <div className='py-20'>
         <div className='max-w-6xl mx-auto px-6'>
           <div className='text-center mb-12'>
             <span className='inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4'>
@@ -257,7 +253,7 @@ export default function Home() {
                 dishes I never would have tried otherwise."
               </p>
               <div className='flex items-center'>
-                <div className='w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold mr-3'>
+                <div className='w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center text-secondary font-bold mr-3'>
                   S
                 </div>
                 <div>
@@ -281,7 +277,7 @@ export default function Home() {
                 are always clear and easy to follow."
               </p>
               <div className='flex items-center'>
-                <div className='w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold mr-3'>
+                <div className='w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center text-secondary font-bold mr-3'>
                   M
                 </div>
                 <div>
@@ -307,7 +303,7 @@ export default function Home() {
                 flavor combinations."
               </p>
               <div className='flex items-center'>
-                <div className='w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold mr-3'>
+                <div className='w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center text-secondary font-bold mr-3'>
                   L
                 </div>
                 <div>
@@ -321,7 +317,7 @@ export default function Home() {
       </div>
 
       {/* Pricing Section */}
-      <div className='py-20 bg-gradient-to-b from-base-100 to-base-200'>
+      <div className='py-20'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
           <div className='text-center mb-12'>
             <span className='inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4'>
@@ -403,8 +399,8 @@ export default function Home() {
                     }
                     className={`btn normal-case flex items-center justify-start gap-2 px-4 transition-all mt-8 ${
                       plan.popular
-                        ? 'bg-secondary border border-secondary/40 hover:border-secondary hover:bg-secondary/40 text-neutral'
-                        : 'bg-primary/20 border border-primary/40 hover:border-primary hover:bg-primary/40 text-neutral'
+                        ? 'bg-secondary hover:bg-secondary/40'
+                        : 'bg-secondary hover:bg-secondary/40'
                     }`}
                   >
                     {plan.name === 'Buy Credits'

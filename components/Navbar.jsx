@@ -16,7 +16,7 @@ export default function Navbar() {
 
   return (
     <motion.div
-      className='navbar bg-base-100 shadow-lg sticky top-0 z-50 py-4'
+      className='navbar bg-[#FAFAF5] shadow-lg sticky top-0 z-50 py-4'
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -91,7 +91,7 @@ export default function Navbar() {
                     <Link
                       href='/sign-up'
                       onClick={closeMenu}
-                      className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-start gap-2 px-8 transition-all text-center'
+                      className='flex items-center justify-start gap-2 px-8 transition-all text-center'
                     >
                       Register/Login
                     </Link>
@@ -101,12 +101,6 @@ export default function Navbar() {
             </ul>
           </div>
           <Link href='/' className='btn btn-ghost text-xl'>
-            <Image
-              src='/logo.jpg'
-              alt='SmartRecipe AI'
-              width={32}
-              height={32}
-            />
             SmartRecipe AI
           </Link>
         </div>
@@ -148,7 +142,7 @@ export default function Navbar() {
             >
               <Link
                 href='/sign-up'
-                className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-start gap-2 px-8 transition-all text-center'
+                className='flex items-center justify-start transition-all text-center'
               >
                 Register/Login
               </Link>

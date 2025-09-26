@@ -56,11 +56,11 @@ export default function RecipesPage() {
       <article>
         <header className='bg-primary text-center py-32'>
           <div className='max-w-5xl mx-auto'>
-            <h1 className='text-5xl font-bold text-white px-4 py-8 rounded-lg uppercase'>
+            <h1 className='text-5xl font-bold px-4 py-8 rounded-lg uppercase'>
               {recipe.recipe.name}
             </h1>
             <div
-              className='rich-text-content text-white'
+              className='rich-text-content'
               dangerouslySetInnerHTML={{ __html: recipe.recipe.description }}
             />
           </div>
@@ -71,7 +71,7 @@ export default function RecipesPage() {
             <button
               onClick={() => handleSaveRecipe(recipe)}
               disabled={recipeSaved}
-              className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-start gap-2 px-8 transition-all text-center mb-8'
+              className='btn bg-secondary border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-start gap-2 px-8 transition-all text-center mb-8'
             >
               {recipeSaved ? 'Recipe Saved' : 'Save Recipe'}
             </button>
@@ -118,7 +118,7 @@ export default function RecipesPage() {
           </p>
         </div>
       </article>
-      <div className='bg-[#E1F5F5] py-12 mt-12 rounded-lg'>
+      <div className='bg-primary py-12 mt-12 rounded-lg'>
         <div className='text-center'>
           <h2 className='text-2xl font-bold mb-4'>Generate another recipe</h2>
           <p className='text-base-content/70 mb-6 max-w-xl mx-auto'>
@@ -126,7 +126,7 @@ export default function RecipesPage() {
           </p>
           <Link
             href='/recipe-generator'
-            className='btn bg-primary text-white hover:bg-primary/80'
+            className='btn bg-secondary hover:bg-secondary/40 border border-secondary'
           >
             Generate Another Recipe
           </Link>

@@ -43,9 +43,9 @@ const FeaturedRecipes = async () => {
       </div>
 
       {/* Recipes Grid */}
-      <div className='relative space-y-6 container mx-auto pb-20 pt-10 px-6'>
-        <div className='flex flex-col gap-8'>
-          <div className='flex flex-wrap flex-row gap-4'>
+      <div className='relative space-y-6 container mx-auto py-20 px-6'>
+        <div className='flex flex-col'>
+          <div className='flex flex-wrap justify-center items-center flex-row gap-8'>
             {recipes.map((recipe, index) => (
               <div
                 key={`recipe-${index}`}

@@ -2,10 +2,10 @@ import Link from 'next/link';
 
 const Footer = () => {
   return (
-    <footer className='py-8 bg-primary text-white'>
+    <footer className='py-16 bg-secondary'>
       <div className='flex flex-col md:flex-row justify-between items-start container mx-auto px-4 gap-8'>
         {/* About Us section */}
-        <div className='mb-4 md:mb-0 max-w-xs text-center md:text-left'>
+        <div className='mb-4 md:mb-0 max-w-xs text-left'>
           <p className='font-bold text-lg mb-1'>About Us</p>
           <p className='text-sm'>
             SmartRecipe AI helps busy people create healthy, delicious meals
@@ -63,7 +63,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className='text-center mt-8 text-xs text-white/70'>
+      <div className='text-center mt-12 text-xs'>
         SmartRecipe AI - All rights reserved © {new Date().getFullYear()}
       </div>
     </footer>

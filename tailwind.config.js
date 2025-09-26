@@ -9,9 +9,11 @@ module.exports = {
     themes: [
       {
         modernMoodTheme: {
-          primary: '#008080',
-          secondary: '#FF6F61',
+          primary: '#8DB580',
+          secondary: '#F47C3C',
+          accent: '#F9DC5C',
           neutral: '#2E2E38',
+          background: '#FAFAF5',
           'base-100': '#feffff',
           info: '#4D96FF',
           success: '#20C997',

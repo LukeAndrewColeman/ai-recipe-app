@@ -27,7 +27,6 @@ export default function RecipeGenerator() {
       const response = await fetch('/api/credits');
       const data = await response.json();
       setCredits(data.credits);
-      console.log('Credits:', data.credits);
       setCreditsLoading(false);
     } catch (error) {
       console.error('Error fetching credits:', error);
@@ -146,34 +145,34 @@ export default function RecipeGenerator() {
   if (!mounted) return null;
 
   return (
-    <div className='relative space-y-6 container mx-auto pb-20 pt-10 px-6'>
+    <div className='relative space-y-6 container mx-auto pb-20 pt-20 px-6'>
       <div className='mb-8'>
-        <h1 className='text-4xl font-bold mb-3 text-primary'>
+        <h1 className='text-4xl font-bold mb-3'>
           Generate a Recipe
         </h1>
       </div>
 
-      <div className='space-y-6'>
+      <div>
         <h2 className='text-2xl font-bold text-center mb-6'>
-          Select Your Ingredients
+          Your Ingredients
         </h2>
         <p className='text-center text-gray-600 mb-6'>
-          Choose ingredients you'd like to include in your recipe
+          Please input the ingredients you'd like to include in your recipe
         </p>
 
         {/* Custom Ingredient Input */}
-        <div className='max-w-xl mx-auto mb-8'>
+        <div className='max-w-xl mx-auto my-8'>
           <form onSubmit={handleCustomIngredientSubmit} className='flex gap-2'>
             <input
               type='text'
               value={customIngredient}
               onChange={(e) => setCustomIngredient(e.target.value)}
-              placeholder='Add a custom ingredient...'
+              placeholder='Add your ingredient...'
               className='input input-bordered flex-1'
             />
             <button
               type='submit'
-              className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 text-neutral normal-case flex items-center justify-start gap-2 px-4 transition-all'
+              className='btn bg-secondary border border-secondary/40 hover:border-secondary hover:bg-secondary/40 text-neutral normal-case flex items-center justify-start gap-2 px-4 transition-all'
             >
               Add Ingredient
             </button>
@@ -182,13 +181,10 @@ export default function RecipeGenerator() {
 
         {/* Selected Ingredients Display */}
         {selectedIngredients.length > 0 && (
-          <div className='mb-6'>
-            <h3 className='text-lg font-semibold text-gray-700 mb-2'>
-              Selected Ingredients:
-            </h3>
+          <div className='max-w-5xl flex justify-center mx-auto my-12'>
             <div className='flex flex-wrap gap-2'>
               {selectedIngredients.map((ingredient) => (
-                <div key={ingredient} className='badge badge-primary gap-2 p-4'>
+                <div key={ingredient} className='badge bg-primary/20 border border-primary/40 gap-2 p-4'>
                   {ingredient}
                   <button
                     onClick={() => handleIngredientSelect(ingredient)}
@@ -202,7 +198,7 @@ export default function RecipeGenerator() {
           </div>
         )}
 
-        {Object.entries(ingredients).map(([category, items]) => (
+        {/* {Object.entries(ingredients).map(([category, items]) => (
           <div key={category} className='space-y-4'>
             <button
               onClick={() => toggleCategory(category)}
@@ -235,12 +231,12 @@ export default function RecipeGenerator() {
               </div>
             )}
           </div>
-        ))}
-        <div className='flex justify-center mt-8'>
+        ))} */}
+        <div className='flex justify-center mt-16'>
           <button
             onClick={handleGenerateRecipe}
             disabled={selectedIngredients.length === 0 || isLoading}
-            className='btn bg-primary text-white normal-case px-8'
+            className='btn bg-primary normal-case px-8'
           >
             {isLoading ? 'Generating...' : 'Generate Recipe'}
           </button>

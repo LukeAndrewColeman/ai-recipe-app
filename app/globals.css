@@ -8,7 +8,7 @@
     --font-inter: 'Inter', sans-serif;
   }
   body {
-    @apply bg-[#F9FAFB];
+    @apply bg-[#FAFAF5] text-[#333333];
   }
   h1,
   h2,

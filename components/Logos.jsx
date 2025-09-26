@@ -5,7 +5,7 @@ import openaiLogo from '@/public/openai.png';
 
 const Logos = () => {
   return (
-    <div className='text-center py-12'>
+    <div className='text-center pt-20 pb-10'>
       {/* Heading */}
       <p className='mb-8 text-gray-600'>Using the latest AI models from</p>
 

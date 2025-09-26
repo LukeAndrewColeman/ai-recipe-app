@@ -18,7 +18,7 @@ export default function RecipeList({ recipes }) {
 
   return (
     <>
-      <div className='flex flex-wrap flex-row gap-4'>
+      <div className='flex flex-wrap flex-row justify-center items-center gap-8 pt-8'>
         {recipes.map((recipe, index) => (
           <div
             key={`recipe-${index}`}

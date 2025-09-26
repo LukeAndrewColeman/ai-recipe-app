@@ -30,10 +30,10 @@ export default function RecipeBook() {
 
   if (!user) {
     return (
-      <div className='container mx-auto px-4 py-10'>
+      <div className='container mx-auto px-4 py-20'>
         <div className='mb-8'>
           <h1 className='text-4xl font-bold mb-3'>Your Recipe Book</h1>
-          <p className='text-neutral/70'>
+          <p className=''>
             Your collection of saved AI generated recipes from around the world.
           </p>
         </div>
@@ -44,7 +44,7 @@ export default function RecipeBook() {
             </p>
             <a
               href='/sign-in'
-              className='btn bg-secondary/20 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-center gap-2 px-8 transition-all mx-auto w-fit'
+              className='btn bg-secondary border border-secondary/40 hover:border-secondary hover:bg-secondary/40 normal-case flex items-center justify-center gap-2 px-8 transition-all mx-auto w-fit'
             >
               Register or Log In →
             </a>
@@ -66,9 +66,9 @@ export default function RecipeBook() {
   }
 
   return (
-    <div className='container mx-auto px-4 py-10'>
+    <div className='container mx-auto px-4 py-20'>
       <div className='mb-8'>
-        <h1 className='text-4xl font-bold mb-3 text-primary'>
+        <h1 className='text-4xl font-bold mb-3'>
           {user.firstName ? `${user.firstName}'s` : 'Your'} Recipe Book
         </h1>
         <p className='text-neutral/70'>

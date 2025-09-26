@@ -4,9 +4,8 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import SocialShare from '@/components/SocialShare';
 
-// Generate dynamic metadata based on recipe data
 export async function generateMetadata({ params }) {
-  const { post } = params;
+  const { post } = await params;
 
   try {
     const postData = await getPosts(post);
@@ -21,7 +20,6 @@ export async function generateMetadata({ params }) {
         url: `https://smartrecipeai.com/blog/${post}`,
       },
 
-      // Add JSON-LD Schema
       jsonLd: {
         '@context': 'https://schema.org',
         '@type': 'Recipe',
@@ -50,7 +48,7 @@ export async function generateMetadata({ params }) {
 export const revalidate = 86400;
 
 const PostPage = async ({ params }) => {
-  const { post } = params;
+  const { post } = await params;
 
   try {
     const postData = await getPosts(post);
@@ -59,12 +57,12 @@ const PostPage = async ({ params }) => {
       <>
         <article>
           <header className='bg-primary text-center py-32'>
-            <div className='max-w-5xl mx-auto'>
-              <h1 className='text-5xl font-bold text-white px-4 py-8 rounded-lg uppercase'>
+            <div className='max-w-3xl mx-auto'>
+              <h1 className='text-5xl font-bold px-4 py-8 rounded-lg uppercase'>
                 {postData.title}
               </h1>
               <div
-                className='rich-text-content text-white px-4'
+                className='rich-text-content px-4'
                 dangerouslySetInnerHTML={{ __html: postData.description }}
               />
             </div>
@@ -101,18 +99,18 @@ const PostPage = async ({ params }) => {
           </div>
           <SocialShare shareUrl={`https://smartrecipeai.com/blog/${post}`} />
         </article>
-        <div className='bg-primary/60 py-12 mt-12 rounded-lg text-white'>
+        <div className='bg-primary py-12 mt-12 rounded-lg'>
           <div className='text-center'>
             <h2 className='text-2xl font-bold mb-4'>
               Want to Create Your Own Recipe?
             </h2>
-            <p className='text-white mb-6 max-w-xl mx-auto'>
+            <p className='mb-6 max-w-xl mx-auto'>
               Try our AI-powered recipe generator to create unique dishes
               tailored to your preferences.
             </p>
             <Link
               href='/recipe-generator'
-              className='btn bg-white hover:bg-white/90 normal-case px-8 min-w-[200px]'
+              className='btn bg-secondary hover:bg-secondary/40 border border-secondary normal-case px-8 min-w-[200px]'
             >
               Generate a Recipe →
             </Link>
