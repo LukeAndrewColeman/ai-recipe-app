@@ -12,19 +12,19 @@ export default function Home() {
   const { user } = useUser();
   const steps = [
     {
-      title: 'Choose Your Ingredients',
+      title: 'Add Your Ingredients',
       description:
-        'Select from our diverse range of ingredients or input your own',
+        'Add the ingredients you have in your fridge to the app',
       gradient: 'from-purple-500 to-pink-400',
     },
     {
-      title: 'AI Recipe Generation',
-      description: 'Our AI creates a unique recipe tailored to your choice',
+      title: 'Generate Your Recipe',
+      description: 'Our AI creates a unique recipe tailored to your ingredients',
       gradient: 'from-purple-500 to-pink-400',
     },
     {
-      title: 'Start Cooking',
-      description: 'Follow detailed instructions to create amazing dishes',
+      title: 'Cook Your Recipe',
+      description: 'Follow the detailed instructions to create amazing dishes',
       gradient: 'from-green-500 to-emerald-400',
     },
   ];
@@ -48,15 +48,10 @@ export default function Home() {
     <>
       <NavCta />
       <div className='bg-gradient-to-t from-primary to-secondary/90 relative overflow-hidden'>
-        {/* Subtle noise texture overlay */}
-        <div className='absolute inset-0 opacity-30 z-10' style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.4'/%3E%3C/svg%3E")`
-        }}></div>
-
         <div className='container mx-auto text-center text-[#333333] py-[70px] md:py-[170px] px-4 max-w-4xl z-20 flex md:flex-row flex-col items-center justify-center overflow-hidden gap-8 relative z-20'>
           <div className='w-full p-4'>
-            <h1 className='text-2xl md:text-5xl font-bold mb-6 capitalize'>
-              Smarter meals, fewer decisions, dinner on autopilot
+            <h1 className='text-2xl md:text-5xl font-bold mb-8 capitalize'>
+              Generate delicious recipe ideas with ingredients you have in your fridge with the help of AI
             </h1>
             <h2 className='text-lg md:text-xl font-medium mb-4 max-w-5xl mx-auto'>
               Transform your kitchen adventures with AI-powered recipe magic!
@@ -102,10 +97,10 @@ export default function Home() {
               Create your free account and unlock:
             </p>
             <ul className='mb-8 space-y-2'>
+              <li>✓ 20 free credits every month</li>
+              <li>✓ 1 credit = 1 recipe</li>
               <li>✓ Save unlimited favorite recipes</li>
               <li>✓ Join our cooking community</li>
-              <li>✓ 20 free credits per month</li>
-              <li>✓ 1 credit = 1 recipe</li>
               <li>✓ No credit card required</li>
             </ul>
             <motion.div
@@ -226,15 +221,12 @@ export default function Home() {
       <div className='py-20'>
         <div className='max-w-6xl mx-auto px-6'>
           <div className='text-center mb-12'>
-            <span className='inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4'>
-              What Our Users Say
-            </span>
             <h2 className='text-3xl md:text-4xl font-bold mb-4'>
               Loved by Home Cooks
             </h2>
             <p className='text-base-content/70 leading-relaxed max-w-xl mx-auto'>
               Join our happy cooks who have transformed their kitchen experience
-              with SmartRecipe AI.
+              with Smart Recipe AI.
             </p>
           </div>
 
@@ -320,9 +312,6 @@ export default function Home() {
       <div className='py-20'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
           <div className='text-center mb-12'>
-            <span className='inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4'>
-              Simple Pricing
-            </span>
             <h2 className='text-3xl md:text-4xl font-bold mb-4'>
               Start Cooking for Free
             </h2>

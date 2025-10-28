@@ -15,9 +15,9 @@ const PrivacyPolicy = () => {
               1. Introduction
             </h2>
             <p className='text-gray-600 leading-relaxed'>
-              This Privacy Policy explains how SmartRecipe AI ("we," "our," or
+              This Privacy Policy explains how Smart Recipe AI ("we," "our," or
               "us") collects, uses, and protects your personal information when
-              you use our website smartrecipeai.com (the "Website"). We are
+              you use our website smartRecipe AI.com (the "Website"). We are
               committed to ensuring that your privacy is protected and that we
               comply with the General Data Protection Regulation (GDPR) and
               other applicable data protection laws.
@@ -30,12 +30,12 @@ const PrivacyPolicy = () => {
               2. Data Controller
             </h2>
             <p className='text-gray-600 leading-relaxed'>
-              SmartRecipe AI is the data controller for the personal information
+              Smart Recipe AI is the data controller for the personal information
               we collect and process. You can contact us at:
             </p>
             <ul className='list-disc list-inside text-gray-600 mt-2 space-y-1'>
-              <li>Email: help@smartrecipeai.com</li>
-              <li>Website: smartrecipeai.com</li>
+              <li>Email: help@smartRecipe AI.com</li>
+              <li>Website: smartRecipe AI.com</li>
             </ul>
           </div>
 
@@ -144,7 +144,7 @@ const PrivacyPolicy = () => {
             </ul>
             <p className='text-gray-600 mt-4'>
               To exercise these rights, please contact us at
-              help@smartrecipeai.com.
+              help@smartRecipe AI.com.
             </p>
           </div>
 
@@ -245,8 +245,8 @@ const PrivacyPolicy = () => {
               please contact us at:
             </p>
             <ul className='list-disc list-inside text-gray-600 mt-2 space-y-1'>
-              <li>Email: help@smartrecipeai.com</li>
-              <li>Website: smartrecipeai.com</li>
+              <li>Email: help@smartRecipe AI.com</li>
+              <li>Website: smartRecipe AI.com</li>
             </ul>
           </div>
 

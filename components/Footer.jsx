@@ -8,7 +8,7 @@ const Footer = () => {
         <div className='mb-4 md:mb-0 max-w-xs text-left'>
           <p className='font-bold text-lg mb-1'>About Us</p>
           <p className='text-sm'>
-            SmartRecipe AI helps busy people create healthy, delicious meals
+            Smart Recipe AI helps busy people create healthy, delicious meals
             using AI-powered recipe generation. Save time, reduce food waste,
             and discover new favorites!
           </p>
@@ -49,7 +49,7 @@ const Footer = () => {
         <div className='flex flex-col gap-2'>
           <p className='font-bold text-lg mb-1'>Contact</p>
           <a
-            href='mailto:help@smartrecipeai.com'
+            href='mailto:help@smartRecipe AI.com'
             className='hover:text-gray-300 transition-colors'
           >
             Email Us
@@ -64,7 +64,7 @@ const Footer = () => {
       </div>
 
       <div className='text-center mt-12 text-xs'>
-        SmartRecipe AI - All rights reserved © {new Date().getFullYear()}
+        Smart Recipe AI - All rights reserved © {new Date().getFullYear()}
       </div>
     </footer>
   );

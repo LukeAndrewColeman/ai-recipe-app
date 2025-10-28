@@ -7,7 +7,7 @@ export default function ContactPage() {
   const [copied, setCopied] = useState(false);
 
   // Email address
-  const email = 'smartrecipeai@gmail.com';
+  const email = 'smartRecipe AI@gmail.com';
 
   // Function to handle copying email to clipboard
   const handleCopyEmail = () => {

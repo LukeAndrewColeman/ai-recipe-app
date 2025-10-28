@@ -47,7 +47,7 @@ export async function POST(req) {
         }
 
         // Find the user in your database
-        const userDoc = await database.listDocuments('smartrecipeai', 'users', [
+        const userDoc = await database.listDocuments('smartRecipe AI', 'users', [
           Query.equal('clerkUserId', userId),
         ]);
 
@@ -64,7 +64,7 @@ export async function POST(req) {
         const newCredits = currentCredits + credits;
 
         await database.updateDocument(
-          'smartrecipeai',
+          'smartRecipe AI',
           'users',
           userDoc.documents[0].$id,
           {

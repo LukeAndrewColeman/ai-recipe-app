@@ -4,7 +4,7 @@ import { ID } from 'appwrite';
 export async function saveRecipe(recipeData) {
   try {
     const recipe = await database.createDocument(
-      'smartrecipeai',
+      'smartRecipe AI',
       'recipes',
       ID.unique(),
       recipeData

@@ -20,7 +20,7 @@ export async function POST(req, res) {
     );
   }
 
-  const existingUser = await database.listDocuments('smartrecipeai', 'users', [
+  const existingUser = await database.listDocuments('smartRecipe AI', 'users', [
     Query.equal('clerkUserId', clerkUserId),
   ]);
 
@@ -39,7 +39,7 @@ export async function POST(req, res) {
   };
 
   const newUser = await database.createDocument(
-    'smartrecipeai',
+    'smartRecipe AI',
     'users',
     ID.unique(),
     data

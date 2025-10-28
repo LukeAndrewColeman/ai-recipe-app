@@ -33,7 +33,7 @@ export default function HowItWorks({ steps }) {
       <div className='text-center max-w-2xl mx-auto mb-12'>
         <h2 className='text-3xl font-semibold mb-4'>How It Works</h2>
         <p className='text-gray-600'>
-          SmartRecipe AI makes exploring new recipes simple and fun. Discover
+          Smart Recipe AI makes exploring new recipes simple and fun. Discover
           delicious dishes from around the world.
         </p>
       </div>

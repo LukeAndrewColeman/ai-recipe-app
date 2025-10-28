@@ -18,7 +18,7 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: 'SmartRecipe AI | Generate tasty and healthy recipes with AI',
+  title: 'Smart Recipe AI | Generate tasty and healthy recipes with AI',
   description:
     'Generate tasty and healthy recipes with AI. Choose your favorite cuisine and let AI generate recipes for you!',
   keywords:
@@ -31,18 +31,18 @@ export const openGraph = {
       url: 'https://unsplash.com/photos/a-table-topped-with-lots-of-plates-of-food-hatqfX3b9Vo',
       width: 1200,
       height: 630,
-      alt: 'SmartRecipe AI - Generate tasty and healthy recipes with AI',
+      alt: 'Smart Recipe AI - Generate tasty and healthy recipes with AI',
     },
   ],
   type: 'website',
   locale: 'en_US',
-  url: 'https://smartrecipeai.com',
-  siteName: 'SmartRecipe AI',
+  url: 'https://smartRecipe AI.com',
+  siteName: 'Smart Recipe AI',
 };
 
 export const twitter = {
   card: 'summary_large_image',
-  title: 'SmartRecipe AI | Generate tasty and healthy recipes with AI',
+  title: 'Smart Recipe AI | Generate tasty and healthy recipes with AI',
   description:
     'Generate tasty and healthy recipes with AI. Choose your favorite cuisine and let AI generate recipes for you!',
   images: [

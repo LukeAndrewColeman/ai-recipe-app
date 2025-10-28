@@ -11,13 +11,13 @@ export async function generateMetadata({ params }) {
     const postData = await getPosts(post);
 
     return {
-      title: `${postData.title} | SmartRecipe AI`,
+      title: `${postData.title} | Smart Recipe AI`,
       description: postData.description.replace(/<[^>]*>/g, '').slice(0, 160),
       openGraph: {
         title: postData.title,
         description: postData.description.replace(/<[^>]*>/g, '').slice(0, 160),
         type: 'article',
-        url: `https://smartrecipeai.com/blog/${post}`,
+        url: `https://smartRecipe AI.com/blog/${post}`,
       },
 
       jsonLd: {
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }) {
         recipeIngredient: [], // You would populate this from your data
         author: {
           '@type': 'Person',
-          name: 'SmartRecipe Ai', // Update with actual author
+          name: 'Smart Recipe AI', // Update with actual author
         },
       },
     };
@@ -38,9 +38,9 @@ export async function generateMetadata({ params }) {
     console.error('Error generating metadata:', error);
     // Return default metadata if we can't fetch the recipe
     return {
-      title: 'Blog | SmartRecipe Ai',
+      title: 'Blog | Smart Recipe AI',
       description:
-        'Discover delicious recipes and cooking inspiration at SmartRecipe Ai',
+        'Discover delicious recipes and cooking inspiration at Smart Recipe AI',
     };
   }
 }
@@ -97,7 +97,7 @@ const PostPage = async ({ params }) => {
               been tested in the real world.
             </p>
           </div>
-          <SocialShare shareUrl={`https://smartrecipeai.com/blog/${post}`} />
+          <SocialShare shareUrl={`https://smartRecipe AI.com/blog/${post}`} />
         </article>
         <div className='bg-primary py-12 mt-12 rounded-lg'>
           <div className='text-center'>

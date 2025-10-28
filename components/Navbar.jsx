@@ -101,7 +101,7 @@ export default function Navbar() {
             </ul>
           </div>
           <Link href='/' className='btn btn-ghost text-xl'>
-            SmartRecipe AI
+            Smart Recipe AI
           </Link>
         </div>
         <div className='sm:navbar-center hidden lg:flex'>

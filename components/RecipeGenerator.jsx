@@ -127,7 +127,7 @@ export default function RecipeGenerator() {
       <div className='flex justify-center flex-col gap-4 items-center mt-24'>
         <div className='loading loading-spinner loading-lg text-primary'></div>
         <div className='text-2xl font-bold text-primary'>
-          SmartRecipe AI is generating your recipe, hang tight...
+          Smart Recipe AI is generating your recipe, hang tight...
         </div>
       </div>
     );

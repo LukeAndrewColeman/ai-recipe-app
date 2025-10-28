@@ -24,7 +24,7 @@ export default function RecipeContent({ cuisine }) {
       fetchedRef.current[cuisine] = true;
 
       setGenerationStep(
-        'Hang tight, SmartRecipe AI is generating recipe ideas for you...'
+        'Hang tight, Smart Recipe AI is generating recipe ideas for you...'
       );
       const previewData = await generateRecipePreviews(cuisine);
 

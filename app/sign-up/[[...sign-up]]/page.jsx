@@ -43,7 +43,7 @@ const SignUpPage = () => {
         <div className='hidden md:flex flex-col items-center justify-center p-8'>
           <div className='max-w-md space-y-8'>
             <h2 className='text-3xl font-bold text-primary mb-8 text-center'>
-              Why Join SmartRecipe AI?
+              Why Join Smart Recipe AI?
             </h2>
             <div className='space-y-6'>
               {benefits.map((benefit, index) => (

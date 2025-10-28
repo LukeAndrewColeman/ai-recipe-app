@@ -15,8 +15,8 @@ const Terms = () => {
               1. Introduction
             </h2>
             <p className='text-gray-600 leading-relaxed'>
-              Welcome to SmartRecipe AI. These Terms and Conditions govern your
-              use of our website smartrecipeai.com and our AI-powered recipe
+              Welcome to Smart Recipe AI. These Terms and Conditions govern your
+              use of our website smartRecipe AI.com and our AI-powered recipe
               generation service. By accessing or using our service, you agree
               to be bound by these Terms.
             </p>
@@ -29,7 +29,7 @@ const Terms = () => {
             </h2>
             <ul className='list-disc list-inside text-gray-600 space-y-2'>
               <li>
-                "Service" refers to the SmartRecipe AI website and recipe
+                "Service" refers to the Smart Recipe AI website and recipe
                 generation platform
               </li>
               <li>
@@ -137,7 +137,7 @@ const Terms = () => {
               7. Limitation of Liability
             </h2>
             <p className='text-gray-600 leading-relaxed'>
-              SmartRecipe AI is not responsible for:
+              Smart Recipe AI is not responsible for:
             </p>
             <ul className='list-disc list-inside text-gray-600 mt-2 space-y-2'>
               <li>
@@ -215,8 +215,8 @@ const Terms = () => {
               For questions about these Terms, please contact us at:
             </p>
             <ul className='list-disc list-inside text-gray-600 mt-2 space-y-1'>
-              <li>Email: help@smartrecipeai.com</li>
-              <li>Website: smartrecipeai.com</li>
+              <li>Email: help@smartRecipe AI.com</li>
+              <li>Website: smartRecipe AI.com</li>
             </ul>
           </div>
 
