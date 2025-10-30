@@ -13,7 +13,7 @@ export async function POST(request) {
   }
 
   const savedRecipe = await database.createDocument(
-    'smartRecipe AI',
+    'smartrecipeai',
     'recipes',
     ID.unique(),
     {
@@ -32,7 +32,7 @@ export async function GET(request) {
     return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
   }
 
-  const recipes = await database.listDocuments('smartRecipe AI', 'recipes', [
+  const recipes = await database.listDocuments('smartrecipeai', 'recipes', [
     Query.equal('userId', user.id),
   ]);
 
@@ -46,7 +46,7 @@ export async function DELETE(request) {
     return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
   }
   const { id } = await request.json();
-  await database.deleteDocument('smartRecipe AI', 'recipes', id);
+  await database.deleteDocument('smartrecipeai', 'recipes', id);
 
   return NextResponse.json({ message: 'Recipe deleted successfully' });
 }

@@ -3,7 +3,7 @@ import { database } from '@/config/appwrite';
 export async function deleteRecipe(recipeId) {
   try {
     const recipe = await database.deleteDocument(
-      'smartRecipe AI',
+      'smartrecipeai',
       'recipes',
       recipeId
     );

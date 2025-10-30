@@ -7,7 +7,7 @@ export async function getSavedRecipes(userId) {
   }
 
   try {
-    const recipes = await database.listDocuments('smartRecipe AI', 'recipes', [
+    const recipes = await database.listDocuments('smartrecipeai', 'recipes', [
       Query.equal('userId', userId),
       Query.orderDesc('$createdAt'),
     ]);

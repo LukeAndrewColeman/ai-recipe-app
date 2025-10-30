@@ -10,7 +10,7 @@ export async function POST(req, res) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const userDoc = await database.listDocuments('smartRecipe AI', 'users', [
+  const userDoc = await database.listDocuments('smartrecipeai', 'users', [
     Query.equal('clerkUserId', user.id),
   ]);
 
@@ -23,7 +23,7 @@ export async function POST(req, res) {
   const newCredits = credits - 1;
 
   const updatedUserDoc = await database.updateDocument(
-    'smartRecipe AI',
+    'smartrecipeai',
     'users',
     userDoc.documents[0].$id,
     {
@@ -40,7 +40,7 @@ export async function GET(req, res) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const userDoc = await database.listDocuments('smartRecipe AI', 'users', [
+  const userDoc = await database.listDocuments('smartrecipeai', 'users', [
     Query.equal('clerkUserId', user.id),
   ]);
 
