@@ -48,7 +48,41 @@ export default function Home() {
     <>
       <NavCta />
       <div className='bg-gradient-to-t from-primary to-secondary/90 relative overflow-hidden'>
-        <div className='container mx-auto text-center text-[#333333] py-[70px] md:py-[170px] px-4 max-w-4xl z-20 flex md:flex-row flex-col items-center justify-center overflow-hidden gap-8 relative z-20'>
+        {/* Background Logo */}
+        <motion.div
+          className='absolute top-1/2 right-8 transform -translate-y-1/2 opacity-10 pointer-events-none hidden md:block'
+          initial={{ opacity: 0, x: 100, rotate: -15 }}
+          animate={{ opacity: 0.1, x: 0, rotate: -10 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+        >
+          <Image
+            src='/ai-robot.png'
+            alt='Smart Recipe AI Logo Background'
+            width={500}
+            height={500}
+            className='w-[350px] h-[350px] lg:w-[500px] lg:h-[500px] object-contain'
+            priority={true}
+          />
+        </motion.div>
+
+        {/* Mobile Background Logo - smaller and positioned differently */}
+        <motion.div
+          className='absolute bottom-4 right-4 opacity-5 pointer-events-none md:hidden'
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 0.05, scale: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          <Image
+            src='/ai-robot.png'
+            alt='Smart Recipe AI Logo Background'
+            width={200}
+            height={200}
+            className='w-[200px] h-[200px] object-contain'
+            priority={true}
+          />
+        </motion.div>
+
+        <div className='container mx-auto text-center text-[#333333] py-[70px] md:py-[170px] px-4 max-w-4xl flex md:flex-row flex-col items-center justify-center overflow-hidden gap-8 relative z-20'>
           <div className='w-full p-4'>
             <h1 className='text-2xl md:text-5xl font-bold mb-8 capitalize'>
               Generate delicious recipe ideas with ingredients you have in your fridge with the help of AI
@@ -127,6 +161,22 @@ export default function Home() {
           transition={{ duration: 0.5 }}
           className='bg-primary/60 p-12 flex flex-col items-center justify-center text-center relative overflow-hidden'
         >
+          {/* Background Logo for Login Block */}
+          <motion.div
+            className='absolute bottom-8 left-8 opacity-6 pointer-events-none'
+            initial={{ opacity: 0, rotate: 25, scale: 0.8 }}
+            whileInView={{ opacity: 0.06, rotate: 15, scale: 1 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+          >
+            <Image
+              src='/ai-robot.png'
+              alt='Smart Recipe AI Background'
+              width={120}
+              height={120}
+              className='w-[100px] h-[100px] md:w-[120px] md:h-[120px] object-contain'
+            />
+          </motion.div>
+
           <div className='relative z-10'>
             <h2 className='text-2xl md:text-3xl font-bold mb-4'>
               Welcome Back
@@ -152,7 +202,23 @@ export default function Home() {
         </motion.div>
       </div>
 
-      <div className='w-full relative'>
+      <div className='w-full relative overflow-hidden'>
+        {/* Small floating logo above the full-width image */}
+        <motion.div
+          className='absolute top-8 left-1/2 transform -translate-x-1/2 opacity-6 pointer-events-none z-10 hidden md:block'
+          initial={{ opacity: 0, y: -30, rotate: 0 }}
+          whileInView={{ opacity: 0.06, y: 0, rotate: 5 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          <Image
+            src='/ai-robot.png'
+            alt='Smart Recipe AI Background'
+            width={80}
+            height={80}
+            className='w-[80px] h-[80px] object-contain'
+          />
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -218,8 +284,8 @@ export default function Home() {
       </div> */}
 
       {/* Reviews Section */}
-      <div className='py-20'>
-        <div className='max-w-6xl mx-auto px-6'>
+      <div className='py-20 relative overflow-hidden'>
+        <div className='max-w-6xl mx-auto px-6 relative z-10'>
           <div className='text-center mb-12'>
             <h2 className='text-3xl md:text-4xl font-bold mb-4'>
               Loved by Home Cooks
@@ -309,8 +375,23 @@ export default function Home() {
       </div>
 
       {/* Pricing Section */}
-      <div className='py-20'>
-        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+      <div className='py-20 relative overflow-hidden'>
+        {/* Background Logo for Pricing - Bottom Right */}
+        <motion.div
+          className='absolute bottom-16 right-12 opacity-6 pointer-events-none hidden md:block'
+          initial={{ opacity: 0, y: 50, rotate: -20 }}
+          whileInView={{ opacity: 0.06, y: 0, rotate: -15 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+        >
+          <Image
+            src='/ai-robot.png'
+            alt='Smart Recipe AI Background'
+            width={300}
+            height={300}
+            className='w-[250px] h-[250px] lg:w-[300px] lg:h-[300px] object-contain'
+          />
+        </motion.div>
+        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
           <div className='text-center mb-12'>
             <h2 className='text-3xl md:text-4xl font-bold mb-4'>
               Start Cooking for Free

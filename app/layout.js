@@ -66,6 +66,7 @@ export default async function RootLayout({ children }) {
         <AuthProvider>
           <body
             className={`min-h-screen flex flex-col text-neutral ${inter.className}`}
+            suppressHydrationWarning
           >
             <Navbar />
             <main className='flex-grow'>{children}</main>

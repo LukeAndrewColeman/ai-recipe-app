@@ -17,22 +17,24 @@ const FeaturedRecipes = async () => {
   return (
     <section>
       {/* Hero Section */}
-      <div className='relative h-[500px] w-full'>
-        {/* Background Image */}
-        <Image
-          src='/hero-image-two.jpg'
-          alt='Cooking ingredients and utensils'
-          fill
-          className='object-cover'
-          priority
-        />
-        {/* Overlay */}
-        <div className='absolute inset-0 bg-primary/95' />
+      <div className='relative h-[500px] w-full bg-gradient-to-br from-primary to-primary/80 overflow-hidden'>
+        {/* Background AI Robot Logo - Right Side */}
+        <div className='absolute top-1/2 right-8 md:right-16 transform -translate-y-1/2 opacity-10'>
+          <Image
+            src='/ai-robot.png'
+            alt='Smart Recipe AI Logo'
+            width={600}
+            height={600}
+            className='w-[350px] h-[350px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] object-contain'
+            priority
+          />
+        </div>
+
         {/* Content */}
-        <div className='relative h-full flex items-center justify-center'>
+        <div className='relative h-full flex items-center justify-center z-10'>
           <div className='text-center max-w-3xl px-6'>
             <h1 className='text-4xl md:text-5xl font-bold mb-4'>
-              Welcome to the Smart RecipeBlog
+              Welcome to the Smart Recipe Blog
             </h1>
             <h2 className='text-lg md:text-xl'>
               Discover authentic recipes, cooking inspiration and more, all in

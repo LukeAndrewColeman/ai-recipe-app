@@ -1,6 +1,9 @@
+'use client';
+
 import React from 'react';
 import { SignIn } from '@clerk/nextjs';
 import Image from 'next/image';
+import { motion } from 'motion/react';
 
 const SignInPage = () => {
   const features = [
@@ -28,7 +31,22 @@ const SignInPage = () => {
     <div className='min-h-screen'>
       <div className='grid grid-cols-1 md:grid-cols-2 min-h-[calc(100vh-4rem)]'>
         {/* Left side - Sign In Form */}
-        <div className='flex items-center justify-center p-8 bg-base-100'>
+        <div className='flex items-center justify-center p-8 bg-base-100 relative overflow-hidden'>
+          {/* Background Logo Behind Form */}
+          <motion.div
+            className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-4 pointer-events-none'
+            initial={{ opacity: 0, scale: 0.8, rotate: -15 }}
+            animate={{ opacity: 0.04, scale: 1, rotate: -10 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+          >
+            <Image
+              src='/ai-robot.png'
+              alt='Smart Recipe AI Background'
+              width={400}
+              height={400}
+              className='w-[320px] h-[320px] md:w-[400px] md:h-[400px] object-contain'
+            />
+          </motion.div>
           <div className='w-full max-w-md'>
             <SignIn
               signInFallbackRedirectUrl={'/dashboard'}
