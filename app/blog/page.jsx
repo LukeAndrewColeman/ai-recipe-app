@@ -25,7 +25,7 @@ const FeaturedRecipes = async () => {
             alt='Smart Recipe AI Logo'
             width={600}
             height={600}
-            className='w-[350px] h-[350px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] object-contain'
+            className='w-[350px] h-[350px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] object-contain rotate-[-15deg]'
             priority
           />
         </div>

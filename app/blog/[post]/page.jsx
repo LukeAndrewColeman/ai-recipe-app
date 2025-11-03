@@ -57,7 +57,7 @@ const PostPage = async ({ params }) => {
     return (
       <>
         <article>
-          <header className='bg-gradient-to-br from-primary to-primary/80 text-center py-32 relative overflow-hidden'>
+          <header className='h-[500px] bg-gradient-to-br from-primary to-primary/80 text-center relative overflow-hidden flex items-center justify-center'>
             {/* Background AI Robot Logo - Right Side */}
             <div className='absolute top-1/2 right-8 md:right-16 transform -translate-y-1/2 opacity-10'>
               <Image
@@ -65,13 +65,13 @@ const PostPage = async ({ params }) => {
                 alt='Smart Recipe AI Logo'
                 width={600}
                 height={600}
-                className='w-[350px] h-[350px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] object-contain'
+                className='w-[350px] h-[350px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] object-contain rotate-[15deg]'
                 priority
               />
             </div>
 
             <div className='max-w-3xl mx-auto relative z-10'>
-              <h1 className='text-5xl font-bold px-4 py-8 rounded-lg uppercase'>
+              <h1 className='md:text-5xl text-3xl font-bold px-4 py-8 rounded-lg uppercase'>
                 {postData.title}
               </h1>
               <div
@@ -113,17 +113,6 @@ const PostPage = async ({ params }) => {
           <SocialShare shareUrl={`https://smartRecipe AI.com/blog/${post}`} />
         </article>
         <div className='bg-primary py-12 mt-12 rounded-lg relative overflow-hidden'>
-          {/* Background AI Robot Logo for CTA */}
-          <div className='absolute bottom-4 left-8 opacity-5 pointer-events-none hidden md:block'>
-            <Image
-              src='/ai-robot.png'
-              alt='Smart Recipe AI Logo'
-              width={200}
-              height={200}
-              className='w-[200px] h-[200px] object-contain'
-            />
-          </div>
-
           <div className='text-center relative z-10'>
             <h2 className='text-2xl font-bold mb-4'>
               Want to Create Your Own Recipe?

@@ -82,12 +82,12 @@ export default function Home() {
           />
         </motion.div>
 
-        <div className='container mx-auto text-center text-[#333333] py-[70px] md:py-[170px] px-4 max-w-4xl flex md:flex-row flex-col items-center justify-center overflow-hidden gap-8 relative z-20'>
+        <div className='container mx-auto text-center text-[#333333] py-[70px] md:py-[170px] px-4 max-w-5xl flex md:flex-row flex-col items-center justify-center overflow-hidden gap-8 relative z-20'>
           <div className='w-full p-4'>
-            <h1 className='text-2xl md:text-5xl font-bold mb-8 capitalize'>
-              Generate delicious recipe ideas with ingredients you have in your fridge with the help of AI
+            <h1 className='text-2xl md:text-5xl font-bold mb-8 capitalize md:!leading-[3.5rem]'>
+              Generate delicious recipe ideas with ingredients you already have in your fridge with the help of AI
             </h1>
-            <h2 className='text-lg md:text-xl font-medium mb-4 max-w-5xl mx-auto'>
+            <h2 className='text-lg md:text-xl font-medium mb-4 max-w-4xl mx-auto'>
               Transform your kitchen adventures with AI-powered recipe magic!
               Create delicious meals from your available ingredients, making
               cooking fun and effortless.
@@ -161,22 +161,6 @@ export default function Home() {
           transition={{ duration: 0.5 }}
           className='bg-primary/60 p-12 flex flex-col items-center justify-center text-center relative overflow-hidden'
         >
-          {/* Background Logo for Login Block */}
-          <motion.div
-            className='absolute bottom-8 left-8 opacity-6 pointer-events-none'
-            initial={{ opacity: 0, rotate: 25, scale: 0.8 }}
-            whileInView={{ opacity: 0.06, rotate: 15, scale: 1 }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
-          >
-            <Image
-              src='/ai-robot.png'
-              alt='Smart Recipe AI Background'
-              width={120}
-              height={120}
-              className='w-[100px] h-[100px] md:w-[120px] md:h-[120px] object-contain'
-            />
-          </motion.div>
-
           <div className='relative z-10'>
             <h2 className='text-2xl md:text-3xl font-bold mb-4'>
               Welcome Back
@@ -380,7 +364,7 @@ export default function Home() {
         <motion.div
           className='absolute bottom-16 right-12 opacity-6 pointer-events-none hidden md:block'
           initial={{ opacity: 0, y: 50, rotate: -20 }}
-          whileInView={{ opacity: 0.06, y: 0, rotate: -15 }}
+          whileInView={{ opacity: 0.2, y: 0, rotate: -15 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
         >
           <Image
