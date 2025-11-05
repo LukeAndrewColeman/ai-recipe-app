@@ -6,6 +6,7 @@ import { useUser } from '@clerk/nextjs';
 export default function RecipesPage() {
   const [recipe, setRecipe] = useState(null);
   const [recipeSaved, setRecipeSaved] = useState(false);
+  const [isDemoRecipe, setIsDemoRecipe] = useState(false);
   const { user } = useUser();
 
   useEffect(() => {
@@ -13,6 +14,12 @@ export default function RecipesPage() {
     const stored = localStorage.getItem('recipePreviews');
     if (stored) {
       setRecipe(JSON.parse(stored));
+    }
+
+    // Check if this is a demo recipe
+    const demoFlag = localStorage.getItem('isDemoRecipe');
+    if (demoFlag === 'true') {
+      setIsDemoRecipe(true);
     }
   }, []);
 
@@ -53,6 +60,27 @@ export default function RecipesPage() {
 
   return (
     <>
+      {/* Demo Banner - shows if this is a demo recipe */}
+      {isDemoRecipe && (
+        <div className='bg-secondary/10 py-4 px-4'>
+          <div className='container mx-auto flex flex-col sm:flex-row items-center justify-between gap-4'>
+            <div className='flex items-center gap-3'>
+              <span className='text-2xl'>🎉</span>
+              <div>
+                <p className='font-bold'>This is a Demo Recipe</p>
+                <p className='text-sm'>Sign up to save this recipe and generate unlimited more!</p>
+              </div>
+            </div>
+            <Link
+              href='/sign-up'
+              className='btn bg-secondary hover:bg-secondary/80 text-white border-none normal-case px-6 whitespace-nowrap'
+            >
+              Sign Up Free →
+            </Link>
+          </div>
+        </div>
+      )}
+
       <article>
         <header className='bg-primary text-center py-32'>
           <div className='max-w-5xl mx-auto'>
@@ -67,7 +95,8 @@ export default function RecipesPage() {
         </header>
 
         <div className='container mx-auto px-4 py-8'>
-          {user && (
+          {/* Save Recipe Button - only shown for authenticated users and non-demo recipes */}
+          {user && !isDemoRecipe && (
             <button
               onClick={() => handleSaveRecipe(recipe)}
               disabled={recipeSaved}
@@ -75,6 +104,21 @@ export default function RecipesPage() {
             >
               {recipeSaved ? 'Recipe Saved' : 'Save Recipe'}
             </button>
+          )}
+
+          {/* Show sign-up prompt for demo recipes */}
+          {isDemoRecipe && (
+            <div className='bg-secondary/10 rounded-lg p-6 mb-8'>
+              <p className='text-gray-700 mb-3'>
+                <span className='font-semibold'>Love this recipe?</span> Sign up to save it to your recipe book and generate more!
+              </p>
+              <Link
+                href='/sign-up'
+                className='btn bg-secondary hover:bg-secondary/80 text-white normal-case'
+              >
+                Sign Up to Save Recipe
+              </Link>
+            </div>
           )}
           <section className='recipe-details flex flex-row gap-4 mb-8'>
             <p className='bg-primary/10 text-primary rounded-lg p-2'>
@@ -125,10 +169,10 @@ export default function RecipesPage() {
             Generate another recipe with our AI-powered recipe generator.
           </p>
           <Link
-            href='/recipe-generator'
+            href={isDemoRecipe ? '/demo' : '/recipe-generator'}
             className='btn bg-secondary hover:bg-secondary/40 border border-secondary'
           >
-            Generate Another Recipe
+            {isDemoRecipe ? 'Generate Another Demo Recipe' : 'Generate Another Recipe'}
           </Link>
         </div>
       </div>

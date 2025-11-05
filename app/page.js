@@ -92,20 +92,37 @@ export default function Home() {
               Create delicious meals from your available ingredients, making
               cooking fun and effortless.
             </h2>
-            <motion.div
-              className='origin-center inline-block'
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              whileHover={{ scale: 1.05, rotate: 2, origin: 'center' }}
-            >
-              <Link
-                href='/recipe-generator'
-                className='btn bg-secondary/80 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 text-neutral normal-case flex items-center justify-start gap-2 px-4 transition-all mt-8'
+            {/* CTA Buttons - Demo and Main Action */}
+            <div className='flex flex-col sm:flex-row gap-4 items-center justify-center mt-8'>
+              <motion.div
+                className='origin-center inline-block'
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                whileHover={{ scale: 1.05, rotate: 2, origin: 'center' }}
               >
-                Generate a Recipe →
-              </Link>
-            </motion.div>
+                <Link
+                  href={user ? '/recipe-generator' : '/sign-up'}
+                  className='btn bg-secondary/80 border border-secondary/40 hover:border-secondary hover:bg-secondary/40 text-neutral normal-case flex items-center justify-center gap-2 px-6 transition-all'
+                >
+                  {user ? 'Generate a Recipe →' : 'Sign Up Free →'}
+                </Link>
+              </motion.div>
+              <motion.div
+                className='origin-center inline-block'
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                whileHover={{ scale: 1.05, rotate: 2, origin: 'center' }}
+              >
+                <Link
+                  href='/demo'
+                  className='btn bg-neutral hover:bg-neutral/80 text-white border-none normal-case flex items-center justify-center gap-2 px-6 transition-all'
+                >
+                  🎉 Try Free Demo
+                </Link>
+              </motion.div>
+            </div>
           </div>
         </div>
       </div>
